@@ -2,7 +2,6 @@ package com.alp.mvp.main.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
-
 import android.widget.TextView;
 
 import com.alp.library.base.ui.BaseFragment;

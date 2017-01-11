@@ -9,6 +9,7 @@ import com.alp.library.base.ui.BaseActivity;
 import com.alp.library.widget.navigationbar.NavigationBar;
 import com.alp.library.widget.navigationbar.NavigationBarFragmentAdapter;
 import com.alp.mvp.R;
+import com.alp.mvp.games.ui.GamesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity {
         List<String> tags = new ArrayList<>();
         FragmentManager manager = getFragmentManager();
 
-        fragments.add(TestFragment.newInstance("111111"));
+        fragments.add(GamesFragment.newInstance());
         drawables.add(R.drawable.ic_people);
         tags.add("Games");
 

@@ -5,12 +5,12 @@ import com.alp.library.presenter.IPresenter;
 
 public class GamesContract {
 
-    interface View extends MVPView {
+    public interface View extends MVPView {
 
         void showGames();
     }
 
-    interface Presenter extends IPresenter {
+    public interface Presenter extends IPresenter {
 
         void getGames();
     }

@@ -1,6 +1,7 @@
 package com.alp.mvp.games;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.alp.library.presenter.BasePresenter;
 import com.alp.library.usecase.UseCase;
@@ -21,6 +22,7 @@ public final class GamesPresenter extends BasePresenter<GamesContract.View> impl
 
     @Override
     public void getGames() {
+        Log.d("getGames", "getGames");
         getView().showGames();
     }
 
