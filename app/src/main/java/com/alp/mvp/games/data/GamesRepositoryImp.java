@@ -12,7 +12,7 @@ public class GamesRepositoryImp implements IGamesRepository {
     private final GamesAPIService remoteService;
 
     @Inject
-    public GamesRepositoryImp(GamesAPIService remoteService) {
+    GamesRepositoryImp(GamesAPIService remoteService) {
         this.remoteService = remoteService;
     }
 

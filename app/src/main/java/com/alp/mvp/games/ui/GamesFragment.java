@@ -27,7 +27,6 @@ public class GamesFragment extends BaseFragment {
         return R.layout.fragment_games;
     }
 
-
     @Override
     public void initView(Bundle savedInstanceState) {
         FragmentAdapter pagerAdapter = new FragmentAdapter(getChildFragmentManager());

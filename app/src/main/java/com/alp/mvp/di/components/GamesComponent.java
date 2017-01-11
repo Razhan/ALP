@@ -10,7 +10,7 @@ import dagger.Component;
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, GamesModule.class})
-public interface GamesComponent extends ActivityComponent {
+interface GamesComponent extends ActivityComponent {
 
     void inject(MyGamesFragment fragment);
 

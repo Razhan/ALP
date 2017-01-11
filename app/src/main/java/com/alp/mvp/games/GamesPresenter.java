@@ -15,7 +15,7 @@ public final class GamesPresenter extends BasePresenter<GamesContract.View> impl
     private final UseCase getGames;
 
     @Inject
-    public GamesPresenter(@Named(GetGames.NAME) UseCase useCase, Activity activity) {
+    GamesPresenter(@Named(GetGames.NAME) UseCase useCase, Activity activity) {
         super(activity);
         this.getGames = useCase;
     }

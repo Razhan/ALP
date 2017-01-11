@@ -5,7 +5,7 @@ import com.alp.mvp.games.data.model.GamesResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 
-public interface IGamesAPI {
+interface IGamesAPI {
 
     @GET("/api/onthemove/bootstrap")
     Observable<GamesResponse> bootstrap();

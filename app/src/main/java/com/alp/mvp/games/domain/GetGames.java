@@ -18,7 +18,7 @@ public final class GetGames extends UseCase {
     IGamesRepository repository;
 
     @Inject
-    public GetGames(@JobThread ExecutionThread executionThread, @UIThread ExecutionThread postExecutionThread) {
+    GetGames(@JobThread ExecutionThread executionThread, @UIThread ExecutionThread postExecutionThread) {
         super(executionThread, postExecutionThread);
     }
 

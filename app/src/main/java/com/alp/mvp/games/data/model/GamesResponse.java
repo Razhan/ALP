@@ -30,7 +30,7 @@ public class GamesResponse {
         this.data = data;
     }
 
-    public static class DataBean {
+    private static class DataBean {
 
         private String api_base_url;
         private String cdn_base_url;

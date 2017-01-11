@@ -14,7 +14,7 @@ public class GamesAPIService {
     private final IGamesAPI testAPI;
 
     @Inject
-    public GamesAPIService() {
+    GamesAPIService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://b2cglobaluat.englishtown.com/")
                 .addConverterFactory(GsonConverterFactory.create())
