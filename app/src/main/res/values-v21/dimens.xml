@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="card_view_elevation">10dp</dimen>
+</resources>
