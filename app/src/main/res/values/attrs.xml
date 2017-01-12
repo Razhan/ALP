@@ -14,4 +14,8 @@
         <attr name="name" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ColorfulCircle">
+        <attr name="fill_color" format="color" />
+    </declare-styleable>
+
 </resources>

@@ -6,7 +6,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="30dp" />
 
     <include layout="@layout/item_game_header" />
 
