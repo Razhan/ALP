@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/card_view_elevation_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_header"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/team"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="Team"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+        <com.alp.mvp.widgete.IndicatedTextView
+            android:id="@+id/gp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:name="GP" />
+
+        <com.alp.mvp.widgete.IndicatedTextView
+            android:id="@+id/w"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:name="W" />
+
+        <com.alp.mvp.widgete.IndicatedTextView
+            android:id="@+id/l"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:name="L" />
+
+        <com.alp.mvp.widgete.IndicatedTextView
+            android:id="@+id/t"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:name="T" />
+
+        <com.alp.mvp.widgete.IndicatedTextView
+            android:id="@+id/pts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:name="PTS" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

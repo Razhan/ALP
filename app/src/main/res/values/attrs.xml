@@ -10,4 +10,8 @@
         <attr name="arrow" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="IndicatedTextView">
+        <attr name="name" format="string" />
+    </declare-styleable>
+
 </resources>

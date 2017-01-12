@@ -15,10 +15,10 @@ public class TeamsFragment extends BaseTabFragment {
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(1), "Division A");
-        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(2), "Division B");
-        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(3), "Division C");
-        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(4), "Division D");
+        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(), "Division A");
+        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(), "Division B");
+        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(), "Division C");
+        pagerAdapter.addFragment(CertainTeamsFragment.newInstance(), "Division D");
 
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

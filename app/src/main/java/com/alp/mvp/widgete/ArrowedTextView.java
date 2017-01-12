@@ -48,7 +48,7 @@ public final class ArrowedTextView extends FrameLayout {
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ArrowedTextView);
 
-        String titleTest = array.getString(R.styleable.ArrowedTextView_title);
+        String titleText = array.getString(R.styleable.ArrowedTextView_title);
         boolean OverLion = array.getBoolean(R.styleable.ArrowedTextView_overline, true);
         boolean UnderLion = array.getBoolean(R.styleable.ArrowedTextView_underline, false);
         boolean arrow = array.getBoolean(R.styleable.ArrowedTextView_arrow, true);
@@ -58,7 +58,7 @@ public final class ArrowedTextView extends FrameLayout {
 
         array.recycle();
 
-        setTitle(titleTest);
+        setTitle(titleText);
         setTitleColor(color);
         showOverLine(OverLion);
         showUnderLine(UnderLion);
