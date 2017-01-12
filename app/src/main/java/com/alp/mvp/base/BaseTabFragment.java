@@ -21,7 +21,7 @@ public abstract class BaseTabFragment extends BaseFragment {
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_tabs;
+        return R.layout.fragment_tablayout;
     }
 
     @Override

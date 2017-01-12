@@ -1,6 +1,7 @@
 package com.alp.mvp.league.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -11,6 +12,7 @@ import com.alp.mvp.di.components.DaggerLeagueComponent;
 import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.league.LeagueContract;
 import com.alp.mvp.league.LeaguePresenter;
+import com.alp.mvp.setting.SettingActivity;
 import com.alp.mvp.widgete.ArrowedTextView;
 
 import butterknife.BindView;
@@ -71,6 +73,6 @@ public class LeagueFragment extends BaseMVPFragment<LeaguePresenter> implements 
 
     @OnClick(R.id.league_setting)
     public void onClick() {
-
+        startActivity(new Intent(activity, SettingActivity.class));
     }
 }

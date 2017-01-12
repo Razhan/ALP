@@ -3,11 +3,11 @@
     package="com.alp.mvp">
 
     <application
+        android:name=".ALPApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".ALPApplication"
         android:theme="@style/AppTheme">
         <activity
             android:name=".main.ui.MainActivity"
@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".setting.SettingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

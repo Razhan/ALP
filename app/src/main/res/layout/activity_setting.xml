@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <com.alp.mvp.widgete.ArrowedTextView
+        android:id="@+id/language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        app:icon="@drawable/ic_setting"
+        app:overline="false"
+        app:title="Language"
+        app:title_color="@android:color/white" />
+
+    <com.alp.mvp.widgete.ArrowedTextView
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_setting"
+        app:title="About"
+        app:title_color="@android:color/white" />
+
+    <com.alp.mvp.widgete.ArrowedTextView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:arrow="false"
+        app:icon="@drawable/ic_setting"
+        app:title="Logout"
+        app:title_color="@android:color/white" />
+
+</LinearLayout>
