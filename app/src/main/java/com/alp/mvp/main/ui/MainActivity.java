@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements NavigationItemClickLis
 
     @Override
     protected String setToolBarText() {
-        return "ALP";
+        return "League TSC- Bandits";
     }
 
     @Override
@@ -91,21 +91,10 @@ public class MainActivity extends BaseActivity implements NavigationItemClickLis
         checkNotNull(toolbar);
         checkNotNull(title);
 
-        switch (index) {
-            case POS_GAMES:
-                toolbar.setVisibility(View.VISIBLE);
-                break;
-            case POS_PLAYERS:
-                toolbar.setVisibility(View.VISIBLE);
-                break;
-            case POS_TEAMS:
-                toolbar.setVisibility(View.VISIBLE);
-                break;
-            case POS_LEAGUE:
-                toolbar.setVisibility(View.GONE);
-                break;
-            default:
-                break;
+        if (index == POS_LEAGUE) {
+            toolbar.setVisibility(View.GONE);
+        } else {
+            toolbar.setVisibility(View.VISIBLE);
         }
     }
 }

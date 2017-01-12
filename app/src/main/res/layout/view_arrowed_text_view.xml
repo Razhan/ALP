@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/icon"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_large" />
 
         <ImageView
             android:id="@+id/arrow"

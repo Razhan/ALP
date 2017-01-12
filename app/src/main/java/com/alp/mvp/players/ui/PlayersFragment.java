@@ -15,8 +15,8 @@ public class PlayersFragment extends BaseTabFragment {
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        pagerAdapter.addFragment(CertainPlayersFragment.newInstance(1), "My Team");
-        pagerAdapter.addFragment(CertainPlayersFragment.newInstance(2), "League");
+        pagerAdapter.addFragment(CertainPlayersFragment.newInstance(), "My Team");
+        pagerAdapter.addFragment(CertainPlayersFragment.newInstance(), "League");
 
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

@@ -3,7 +3,7 @@ package com.alp.mvp.players.ui;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
 
 import com.alp.library.base.ui.BaseMVPFragment;
 import com.alp.mvp.ALPApplication;
@@ -12,22 +12,16 @@ import com.alp.mvp.di.components.DaggerPlayersComponent;
 import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.players.PlayersContract;
 import com.alp.mvp.players.PlayersPresenter;
+import com.alp.mvp.widgete.IndicatedTextView;
 
-import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> implements PlayersContract.View {
 
-    private static final String KEY_BUNDLE = "count";
+    private IndicatedTextView previousItem;
 
-    @BindView(R.id.textview)
-    TextView text;
-
-    public static Fragment newInstance(int i) {
-        Fragment fragment = new CertainPlayersFragment();
-        Bundle args = new Bundle();
-        args.putInt(KEY_BUNDLE, i);
-        fragment.setArguments(args);
-        return fragment;
+    public static Fragment newInstance() {
+        return new CertainPlayersFragment();
     }
 
     @Override
@@ -39,7 +33,7 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_page;
+        return R.layout.fragment_certain_players;
     }
 
     @Override
@@ -52,13 +46,20 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
     }
 
     @Override
-    public void initView(Bundle savedInstanceState) {
-        text.setText(String.valueOf(getArguments().getInt(KEY_BUNDLE)));
-    }
-
-    @Override
     public void showPlayers() {
         Log.d(TAG, "showPlayers");
+    }
+
+    @OnClick({R.id.position, R.id.gp, R.id.goal, R.id.assist, R.id.total})
+    public void onClick(View view) {
+        IndicatedTextView currentItem = (IndicatedTextView) view;
+
+        if (previousItem != null && currentItem != previousItem) {
+            previousItem.reset();
+        }
+
+        currentItem.onChosen();
+        previousItem = currentItem;
     }
 
 }

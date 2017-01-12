@@ -17,17 +17,8 @@ import butterknife.BindView;
 
 public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implements GamesContract.View {
 
-    private static final String KEY_BUNDLE = "count";
-
-    @BindView(R.id.textview)
-    TextView text;
-
-    public static Fragment newInstance(int i) {
-        Fragment fragment = new CertainGamesFragment();
-        Bundle args = new Bundle();
-        args.putInt(KEY_BUNDLE, i);
-        fragment.setArguments(args);
-        return fragment;
+    public static Fragment newInstance() {
+        return new CertainGamesFragment();
     }
 
     @Override
@@ -39,7 +30,7 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_page;
+        return R.layout.fragment_certain_games;
     }
 
     @Override
@@ -49,11 +40,6 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
                 .activityModule(new ActivityModule(activity))
                 .build()
                 .inject(this);
-    }
-
-    @Override
-    public void initView(Bundle savedInstanceState) {
-        text.setText(String.valueOf(getArguments().getInt(KEY_BUNDLE)));
     }
 
     @Override

@@ -11,50 +11,55 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/team"
+            android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:paddingStart="10dp"
             android:gravity="start|center_vertical"
-            android:text="Team"
+            android:text="Date"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_small" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/gp"
+        <TextView
+            android:id="@+id/match"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:name="GP" />
+            android:layout_weight="4"
+            android:gravity="start|center_vertical"
+            android:text="Match"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_small" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/w"
+        <TextView
+            android:id="@+id/result"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            app:name="W" />
+            android:gravity="start|center_vertical"
+            android:text="Result"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_small" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/l"
+        <TextView
+            android:id="@+id/venue"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            app:name="L" />
+            android:gravity="start|center_vertical"
+            android:text="Venue"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_small" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/t"
+        <TextView
+            android:id="@+id/attendance"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:name="T" />
-
-        <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/pts"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:name="Pts" />
+            android:layout_weight="3"
+            android:gravity="start|center_vertical"
+            android:text="Attendance"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_small" />
 
     </LinearLayout>
 

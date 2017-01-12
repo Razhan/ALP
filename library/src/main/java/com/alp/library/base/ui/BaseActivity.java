@@ -28,13 +28,11 @@ public abstract class BaseActivity extends AppCompatActivity implements InitView
     protected boolean fullScreen = false;
     protected boolean doubleClickExit = false;
     protected boolean immersiveMode = false;
-
-    private boolean BackPressedOnce = false;
-
     @Nullable
     protected Toolbar toolbar;
     @Nullable
     protected TextView title;
+    private boolean BackPressedOnce = false;
 
     @Override
     @CallSuper
