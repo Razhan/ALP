@@ -3,6 +3,7 @@ package com.alp.mvp.games.ui;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.alp.library.base.ui.BaseMVPFragment;
 import com.alp.mvp.ALPApplication;
@@ -12,10 +13,20 @@ import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.games.GamesContract;
 import com.alp.mvp.games.GamesPresenter;
 
-public class AllGamesFragment extends BaseMVPFragment<GamesPresenter> implements GamesContract.View {
+import butterknife.BindView;
 
-    public static Fragment newInstance() {
-        return new AllGamesFragment();
+public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implements GamesContract.View {
+    private static final String KEY_BUNDLE = "count";
+
+    @BindView(R.id.textview)
+    TextView text;
+
+    public static Fragment newInstance(int i) {
+        Fragment fragment = new CertainGamesFragment();
+        Bundle args = new Bundle();
+        args.putInt(KEY_BUNDLE, i);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -37,6 +48,11 @@ public class AllGamesFragment extends BaseMVPFragment<GamesPresenter> implements
                 .activityModule(new ActivityModule(activity))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
+        text.setText(String.valueOf(getArguments().getInt(KEY_BUNDLE)));
     }
 
     @Override

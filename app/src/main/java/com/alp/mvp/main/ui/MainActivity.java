@@ -10,6 +10,7 @@ import com.alp.library.widget.navigationbar.NavigationBar;
 import com.alp.library.widget.navigationbar.NavigationBarFragmentAdapter;
 import com.alp.mvp.R;
 import com.alp.mvp.games.ui.GamesFragment;
+import com.alp.mvp.players.ui.PlayersFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class MainActivity extends BaseActivity {
         drawables.add(R.drawable.ic_people);
         tags.add("Games");
 
-        fragments.add(TestFragment.newInstance("222222"));
+        fragments.add(PlayersFragment.newInstance());
         drawables.add(R.drawable.ic_people);
         tags.add("Players");
 
