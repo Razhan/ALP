@@ -1,3 +1,4 @@
 <resources>
-    <dimen name="card_view_elevation">10dp</dimen>
+    <dimen name="card_view_elevation_small">3dp</dimen>
+    <dimen name="card_view_elevation_normal">10dp</dimen>
 </resources>

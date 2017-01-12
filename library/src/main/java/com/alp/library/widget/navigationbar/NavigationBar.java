@@ -2,6 +2,7 @@ package com.alp.library.widget.navigationbar;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,8 @@ public class NavigationBar extends FrameLayout implements View.OnClickListener {
     private static final float maxScale = 1.15f;
 
     private Context mContext;
-    private int activeColor = Color.parseColor("#0078ff");
-    private int inActiveColor = Color.parseColor("#8c8c8c");
+    private int activeColor;
+    private int inActiveColor;
 
     private int moveDistance;
     private int currentTabPosition;
@@ -51,6 +52,9 @@ public class NavigationBar extends FrameLayout implements View.OnClickListener {
         mContext = context;
         moveDistance = ViewUtil.dpToPx(mContext, 2);
         currentTabPosition = 0;
+
+        activeColor = ContextCompat.getColor(context, R.color.colorPrimary);
+        inActiveColor = Color.parseColor("#8c8c8c");
 
         View rootView = View.inflate(mContext, R.layout.view_navigation_bar, this);
         itemContainer = (LinearLayout) rootView.findViewById(R.id.navigation_bar_item_container);

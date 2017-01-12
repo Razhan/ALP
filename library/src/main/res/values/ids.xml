@@ -7,4 +7,5 @@
     <item name="double_confirm" type="string" />
     <item name="exception_message" type="string" />
 
+    <item name="colorPrimary" type="color" />
 </resources>

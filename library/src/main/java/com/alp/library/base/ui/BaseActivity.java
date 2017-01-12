@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.CallSuper;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity implements InitView
     protected boolean immersiveMode = false;
 
     private boolean BackPressedOnce = false;
+
+    @Nullable
+    protected Toolbar toolbar;
+    @Nullable
+    protected TextView title;
 
     @Override
     @CallSuper
@@ -68,8 +74,8 @@ public abstract class BaseActivity extends AppCompatActivity implements InitView
     @CallSuper
     @Override
     public void initView(Bundle savedInstanceState) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView title = (TextView) findViewById(R.id.toolbar_title);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        title = (TextView) findViewById(R.id.toolbar_title);
 
         if (toolbar == null) {
             return;

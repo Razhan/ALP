@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ArrowedTextView">
+        <attr name="title" format="string" />
+        <attr name="overline" format="boolean" />
+        <attr name="underline" format="boolean" />
+        <attr name="show_icon" format="boolean" />
+        <attr name="icon" format="reference" />
+
+    </declare-styleable>
+
+</resources>

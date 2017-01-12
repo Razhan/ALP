@@ -16,6 +16,7 @@ import com.alp.mvp.games.GamesPresenter;
 import butterknife.BindView;
 
 public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implements GamesContract.View {
+
     private static final String KEY_BUNDLE = "count";
 
     @BindView(R.id.textview)

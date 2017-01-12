@@ -21,7 +21,7 @@ public abstract class BaseTabFragment extends BaseFragment {
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_games;
+        return R.layout.fragment_tabs;
     }
 
     @Override

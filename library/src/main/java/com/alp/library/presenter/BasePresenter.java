@@ -1,6 +1,5 @@
 package com.alp.library.presenter;
 
-
 import android.content.Context;
 
 import com.alp.library.base.ui.MVPView;
