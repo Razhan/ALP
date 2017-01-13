@@ -62,13 +62,13 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
                 .inject(this);
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (isVisibleToUser && gameList != null) {
-
-            gameList.scrollToPosition(currentPos);
-        }
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        if (isVisibleToUser && gameList != null) {
+//
+//            gameList.scrollToPosition(currentPos);
+//        }
+//    }
 
     @Override
     public void initView(Bundle savedInstanceState) {

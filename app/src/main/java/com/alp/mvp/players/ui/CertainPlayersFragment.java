@@ -64,7 +64,7 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
 
     private void initList() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 28; i++) {
             list.add("");
         }
 

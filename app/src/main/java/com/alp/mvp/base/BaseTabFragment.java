@@ -8,12 +8,13 @@ import android.support.v4.view.ViewPager;
 import com.alp.library.base.ui.BaseFragment;
 import com.alp.mvp.R;
 import com.alp.mvp.adapter.FragmentAdapter;
+import com.alp.mvp.widgete.LockableViewPager;
 
 import butterknife.BindView;
 
 public abstract class BaseTabFragment extends BaseFragment {
 
-    @BindView(R.id.tablayout)
+    @BindView(R.id.tab_layout)
     public TabLayout tabLayout;
     @BindView(R.id.viewpager)
     public ViewPager viewPager;
@@ -21,7 +22,7 @@ public abstract class BaseTabFragment extends BaseFragment {
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_tablayout;
+        return R.layout.fragment_tab_layout;
     }
 
     @Override
