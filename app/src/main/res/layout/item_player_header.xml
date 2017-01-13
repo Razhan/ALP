@@ -15,8 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="6"
-            android:paddingStart="10dp"
-            android:gravity="start|center_vertical"
+            android:gravity="center"
             android:text="Name"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_small" />

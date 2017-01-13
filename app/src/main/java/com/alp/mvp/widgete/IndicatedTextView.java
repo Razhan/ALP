@@ -18,7 +18,7 @@ import com.alp.mvp.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class IndicatedTextView extends FrameLayout {
+public final class IndicatedTextView extends FrameLayout {
 
     @BindView(R.id.title)
     TextView title;

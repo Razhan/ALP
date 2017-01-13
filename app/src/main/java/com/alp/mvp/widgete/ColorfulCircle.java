@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.alp.mvp.R;
 
-public class ColorfulCircle extends View {
+public final class ColorfulCircle extends View {
 
     private int color;
     private int radius;
@@ -59,7 +59,11 @@ public class ColorfulCircle extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(color);
-        canvas.drawCircle(radius, radius, radius,paint);
+        canvas.drawCircle(radius, radius, radius, paint);
     }
 
+    public void setColor(int color) {
+        this.color = color;
+        invalidate();
+    }
 }

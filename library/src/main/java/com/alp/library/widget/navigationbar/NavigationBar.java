@@ -73,7 +73,7 @@ public class NavigationBar extends FrameLayout implements View.OnClickListener {
         View[] viewsToAdd = new View[itemSize];
 
         for (int i = 0; i < itemSize; i++) {
-            ViewGroup bottomItem = (ViewGroup) View.inflate(mContext, R.layout.item_bottombar, null);
+            ViewGroup bottomItem = (ViewGroup) View.inflate(mContext, R.layout.item_bottom_bar, null);
 
             ImageView icon = (ImageView) bottomItem.findViewById(R.id.navigation_bar_icon);
             icon.setImageResource(adapter.getDrawable(i));

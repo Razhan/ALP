@@ -2,23 +2,34 @@ package com.alp.mvp.players.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
 import com.alp.library.base.ui.BaseMVPFragment;
 import com.alp.mvp.ALPApplication;
 import com.alp.mvp.R;
+import com.alp.mvp.adapter.PlayerAdapter;
 import com.alp.mvp.di.components.DaggerPlayersComponent;
 import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.players.PlayersContract;
 import com.alp.mvp.players.PlayersPresenter;
 import com.alp.mvp.widgete.IndicatedTextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> implements PlayersContract.View {
 
+    @BindView(R.id.player_list)
+    RecyclerView playerList;
+
     private IndicatedTextView previousItem;
+    private PlayerAdapter adapter;
 
     public static Fragment newInstance() {
         return new CertainPlayersFragment();
@@ -43,6 +54,22 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
                 .activityModule(new ActivityModule(activity))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
+        initList();
+    }
+
+    private void initList() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            list.add("");
+        }
+
+        adapter = new PlayerAdapter(activity, list);
+        playerList.setLayoutManager(new LinearLayoutManager(getContext()));
+        playerList.setAdapter(adapter);
     }
 
     @Override

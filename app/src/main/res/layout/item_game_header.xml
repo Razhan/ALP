@@ -13,28 +13,28 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_header"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp">
+            android:paddingEnd="30dp"
+            android:paddingStart="30dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_arrow_circle"
-                android:rotation="90"/>
+                android:rotation="90"
+                android:src="@drawable/ic_arrow_circle" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_centerInParent="true"
+                android:gravity="center"
                 android:text="June 2016" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_arrow_circle"
-                android:rotation="-90"/>
+                android:rotation="-90"
+                android:src="@drawable/ic_arrow_circle" />
 
 
         </RelativeLayout>
@@ -54,8 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:paddingStart="10dp"
-                android:gravity="start|center_vertical"
+                android:gravity="center"
                 android:text="Date"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small" />
@@ -65,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:gravity="start|center_vertical"
+                android:gravity="center"
                 android:text="Match"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small" />
@@ -75,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:gravity="start|center_vertical"
+                android:gravity="center"
                 android:text="Result"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small" />
@@ -85,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:gravity="start|center_vertical"
+                android:gravity="center"
                 android:text="Venue"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small" />
@@ -95,7 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:gravity="start|center_vertical"
+                android:gravity="center"
                 android:text="Attendance"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_small" />
