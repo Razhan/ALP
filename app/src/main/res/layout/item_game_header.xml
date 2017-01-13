@@ -52,7 +52,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/game_header_date"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -62,7 +62,7 @@
                 android:textSize="@dimen/text_small" />
 
             <TextView
-                android:id="@+id/match"
+                android:id="@+id/game_header_match"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -72,7 +72,7 @@
                 android:textSize="@dimen/text_small" />
 
             <TextView
-                android:id="@+id/result"
+                android:id="@+id/game_header_result"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -82,7 +82,7 @@
                 android:textSize="@dimen/text_small" />
 
             <TextView
-                android:id="@+id/venue"
+                android:id="@+id/game_header_venue"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -92,7 +92,7 @@
                 android:textSize="@dimen/text_small" />
 
             <TextView
-                android:id="@+id/attendance"
+                android:id="@+id/game_header_attendance"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"

@@ -81,7 +81,7 @@ public class CertainTeamsFragment extends BaseMVPFragment<TeamsPresenter> implem
         Log.d(TAG, "showTeams");
     }
 
-    @OnClick({R.id.gp, R.id.w, R.id.l, R.id.t, R.id.pts})
+    @OnClick({R.id.team_header_gp, R.id.team_header_w, R.id.team_header_l, R.id.team_header_t, R.id.team_header_pts})
     public void onClick(View view) {
         IndicatedTextView currentItem = (IndicatedTextView) view;
 

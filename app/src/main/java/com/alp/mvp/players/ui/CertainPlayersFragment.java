@@ -81,7 +81,8 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
         Log.d(TAG, "showPlayers");
     }
 
-    @OnClick({R.id.position, R.id.gp, R.id.goal, R.id.assist, R.id.total})
+    @OnClick({R.id.player_header_position, R.id.player_header_gp, R.id.player_header_goal,
+            R.id.player_header_assist, R.id.player_header_total})
     public void onClick(View view) {
         IndicatedTextView currentItem = (IndicatedTextView) view;
 
@@ -92,6 +93,5 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
         currentItem.onChosen();
         previousItem = currentItem;
     }
-
 
 }

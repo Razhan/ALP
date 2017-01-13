@@ -63,12 +63,34 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
 
     @Override
     public void initView(Bundle savedInstanceState) {
-//        initArrow();
         initList();
+        updateArrow();
     }
 
-    private void initArrow() {
-        leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+    private void updateArrow() {
+        if (adapter == null || adapter.getItemCount() == 0) {
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            return;
+        }
+
+        if (currentPos <= 0) {
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            return;
+        }
+
+        if (currentPos >=  adapter.getItemCount() - 1) {
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            return;
+        }
+
+        if (currentPos > 0 && currentPos < adapter.getItemCount() - 1) {
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            return;
+        }
     }
 
     private void initList() {
@@ -113,11 +135,13 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
             case R.id.left_arrow:
                 if (currentPos > 0) {
                     gameList.smoothScrollToPosition(--currentPos);
+                    updateArrow();
                 }
                 break;
             case R.id.right_arrow:
                 if (currentPos < adapter.getItemCount() - 1) {
                     gameList.smoothScrollToPosition(++currentPos);
+                    updateArrow();
                 }
                 break;
         }

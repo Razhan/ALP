@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/player_header_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="6"
@@ -21,35 +21,35 @@
             android:textSize="@dimen/text_small" />
 
         <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/position"
+            android:id="@+id/player_header_position"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             app:name="Position" />
 
         <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/gp"
+            android:id="@+id/player_header_gp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             app:name="GP" />
 
         <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/goal"
+            android:id="@+id/player_header_goal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
             app:name="Goal" />
 
         <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/assist"
+            android:id="@+id/player_header_assist"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
             app:name="Assist" />
 
         <com.alp.mvp.widgete.IndicatedTextView
-            android:id="@+id/total"
+            android:id="@+id/player_header_total"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
