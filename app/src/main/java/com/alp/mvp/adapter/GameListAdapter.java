@@ -32,4 +32,5 @@ public class GameListAdapter extends BasicRecyclerViewAdapter<List<String>> {
         list.setLayoutManager(new LinearLayoutManager(mContext));
         list.setAdapter(adapter);
     }
+
 }

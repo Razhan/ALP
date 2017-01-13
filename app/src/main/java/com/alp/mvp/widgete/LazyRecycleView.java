@@ -24,5 +24,5 @@ public class LazyRecycleView extends RecyclerView {
     public boolean onTouchEvent(MotionEvent e) {
         return false;
     }
-    
+
 }

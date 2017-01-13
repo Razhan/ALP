@@ -1,6 +1,7 @@
 package com.alp.mvp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.alp.library.widget.recycleview.BasicRecyclerViewAdapter;
 import com.alp.library.widget.recycleview.ViewHolder;
@@ -24,5 +25,8 @@ public class GameAdapter extends BasicRecyclerViewAdapter<String> {
     @Override
     protected void onBindItemViewHolder(ViewHolder holder, int position, String item) {
         identifyLayer(mContext, holder.itemView, position);
+
+        holder.setOnClickListener(R.id.attendance_wrapper, v -> Log.d("attendance", "attendance"));
     }
+
 }

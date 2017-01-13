@@ -1,6 +1,7 @@
 package com.alp.mvp.games.ui;
 
 import android.app.Fragment;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,6 +63,14 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser && gameList != null) {
+
+            gameList.scrollToPosition(currentPos);
+        }
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         initList();
         updateArrow();
@@ -100,7 +109,7 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
         }
 
         List<String> list2 = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 25; i++) {
             list2.add("");
         }
 
@@ -108,7 +117,6 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
         for (int i = 0; i < 8; i++) {
             list3.add("");
         }
-
 
         List<List<String>> lists = new ArrayList<>();
 
@@ -146,4 +154,5 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
                 break;
         }
     }
+
 }

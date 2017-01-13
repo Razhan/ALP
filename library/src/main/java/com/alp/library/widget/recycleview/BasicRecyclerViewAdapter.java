@@ -12,10 +12,10 @@ import java.util.List;
 public abstract class BasicRecyclerViewAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
     protected final Context mContext;
-    protected LayoutInflater mInflater;
-    protected List<T> items;
-    protected OnItemClickListener<T> mClickListener;
-    protected OnItemLongClickListener<T> mLongClickListener;
+    LayoutInflater mInflater;
+    List<T> items;
+    OnItemClickListener<T> mClickListener;
+    OnItemLongClickListener<T> mLongClickListener;
 
     public BasicRecyclerViewAdapter(Context context, List<T> list) {
         items = (list != null) ? list : new ArrayList();
