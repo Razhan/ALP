@@ -1,6 +1,7 @@
 package com.alp.mvp.players.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -68,6 +69,9 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
         }
 
         adapter = new PlayerAdapter(activity, list);
+
+        adapter.setClickListener((view, pos, item) -> startActivity(new Intent(activity, PlayerDetailActivity.class)));
+
         playerList.setLayoutManager(new LinearLayoutManager(getContext()));
         playerList.setAdapter(adapter);
     }
@@ -88,5 +92,6 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
         currentItem.onChosen();
         previousItem = currentItem;
     }
+
 
 }

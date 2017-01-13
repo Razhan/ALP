@@ -10,23 +10,28 @@
         android:layout_height="240dp">
 
         <ImageView
-            android:id="@+id/league_bg"
+            android:id="@+id/player_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@color/colorPrimary" />
+            android:src="@android:color/holo_blue_bright" />
 
-        <ImageView
-            android:id="@+id/league_setting"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_setting" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/player_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_arrow_back" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -34,7 +39,7 @@
             android:paddingStart="20dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/league_avatar"
+                android:id="@+id/player_avatar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@android:color/white"
@@ -45,7 +50,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:gravity="center_vertical"
-                android:text="Shanghai Hockey League "
+                android:text="player name"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
@@ -55,13 +60,14 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         app:cardElevation="@dimen/card_view_elevation_small">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="12dp"
+            android:gravity="center_vertical"
             android:text="To become a player, Wong tells us, It's so easy a caveman could do it. At a shinny, anyone is welcome to drop in and play. "
             android:textColor="@color/grey"
             android:textSize="@dimen/text_normal" />
@@ -80,35 +86,28 @@
             android:orientation="vertical">
 
             <com.alp.mvp.widgete.ArrowedTextView
-                android:id="@+id/league_posts"
+                android:id="@+id/player_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="League posts" />
+                app:title="Contact Information" />
 
             <com.alp.mvp.widgete.ArrowedTextView
-                android:id="@+id/league_venues"
+                android:id="@+id/player_posts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="Venues" />
+                app:title="Posts" />
 
             <com.alp.mvp.widgete.ArrowedTextView
-                android:id="@+id/league_rules"
+                android:id="@+id/player_stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="Rules" />
+                app:title="Stats" />
 
             <com.alp.mvp.widgete.ArrowedTextView
-                android:id="@+id/league_fees"
+                android:id="@+id/player_interests"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="Fees" />
-
-            <com.alp.mvp.widgete.ArrowedTextView
-                android:id="@+id/league_contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="Contact information"
-                app:underline="true" />
+                app:title="Interests" />
 
         </LinearLayout>
 

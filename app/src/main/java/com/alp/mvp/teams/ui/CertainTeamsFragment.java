@@ -1,6 +1,7 @@
 package com.alp.mvp.teams.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -68,6 +69,9 @@ public class CertainTeamsFragment extends BaseMVPFragment<TeamsPresenter> implem
         }
 
         adapter = new TeamAdapter(activity, list);
+
+        adapter.setClickListener((view, pos, item) -> startActivity(new Intent(activity, TeamDetailActivity.class)));
+
         teamList.setLayoutManager(new LinearLayoutManager(getContext()));
         teamList.setAdapter(adapter);
     }

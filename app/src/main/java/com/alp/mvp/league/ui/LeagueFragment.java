@@ -49,7 +49,7 @@ public class LeagueFragment extends BaseMVPFragment<LeaguePresenter> implements 
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_league_info;
+        return R.layout.fragment_league_detail;
     }
 
     @Override

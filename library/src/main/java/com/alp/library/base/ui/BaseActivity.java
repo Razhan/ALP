@@ -23,11 +23,11 @@ public abstract class BaseActivity extends AppCompatActivity implements InitView
 
     protected final String TAG = this.getClass().getSimpleName();
 
-    protected boolean translucentStatusBar = false;
-    protected boolean screenRotate = false;
-    protected boolean fullScreen = false;
-    protected boolean doubleClickExit = false;
-    protected boolean immersiveMode = false;
+    private boolean translucentStatusBar = false;
+    private boolean screenRotate = false;
+    private boolean fullScreen = false;
+    private boolean doubleClickExit = false;
+    private boolean immersiveMode = false;
     @Nullable
     protected Toolbar toolbar;
     @Nullable
@@ -97,7 +97,9 @@ public abstract class BaseActivity extends AppCompatActivity implements InitView
         return true;
     }
 
-    abstract protected String setToolBarText();
+    protected String setToolBarText() {
+        return null;
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
