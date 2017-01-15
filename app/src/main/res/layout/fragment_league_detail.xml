@@ -79,31 +79,31 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/league_posts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="League posts" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/league_venues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Venues" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/league_rules"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Rules" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/league_fees"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Fees" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/league_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

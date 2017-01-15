@@ -1,16 +1,19 @@
-package com.alp.mvp.widgete;
+package com.alp.mvp.widget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Scroller;
 
 public class LockableViewPager extends ViewPager {
 
     private boolean swipeLocked;
 
+
     public LockableViewPager(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public LockableViewPager(Context context, AttributeSet attrs) {
@@ -34,6 +37,7 @@ public class LockableViewPager extends ViewPager {
     public boolean onInterceptTouchEvent(MotionEvent event) {
         return !swipeLocked && super.onInterceptTouchEvent(event);
     }
+
 
     @Override
     public boolean canScrollHorizontally(int direction) {

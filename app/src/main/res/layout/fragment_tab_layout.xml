@@ -13,7 +13,7 @@
         app:tabMode="fixed"
         app:tabTextAppearance="@style/TabLayoutTextStyle" />
 
-    <com.alp.mvp.widgete.LockableViewPager
+    <com.alp.mvp.widget.LockableViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0px"

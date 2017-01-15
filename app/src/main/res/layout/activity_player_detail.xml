@@ -85,25 +85,25 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/player_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Contact Information" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/player_posts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Posts" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/player_stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Stats" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/player_interests"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

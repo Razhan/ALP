@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import com.alp.library.base.ui.BaseFragment;
 import com.alp.mvp.R;
 import com.alp.mvp.adapter.FragmentAdapter;
-import com.alp.mvp.widgete.LockableViewPager;
 
 import butterknife.BindView;
 

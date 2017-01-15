@@ -27,6 +27,8 @@ public class GameAdapter extends BasicRecyclerViewAdapter<String> {
         identifyLayer(mContext, holder.itemView, position);
 
         holder.setOnClickListener(R.id.attendance_wrapper, v -> Log.d("attendance", "attendance"));
+
+        holder.setText(R.id.result, item);
     }
 
 }

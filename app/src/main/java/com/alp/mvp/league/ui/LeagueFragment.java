@@ -13,7 +13,7 @@ import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.league.LeagueContract;
 import com.alp.mvp.league.LeaguePresenter;
 import com.alp.mvp.setting.SettingActivity;
-import com.alp.mvp.widgete.ArrowedTextView;
+import com.alp.mvp.widget.ArrowedTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;

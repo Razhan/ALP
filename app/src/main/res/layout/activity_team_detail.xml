@@ -135,13 +135,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/team_summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Game Summary" />
 
-            <com.alp.mvp.widgete.ArrowedTextView
+            <com.alp.mvp.widget.ArrowedTextView
                 android:id="@+id/team_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -133,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements InitView
 
         showToast(getString(R.string.double_confirm));
 
-        new Handler().postDelayed(() -> BackPressedOnce = false, 2000);
+        new Handler().postDelayed(() -> BackPressedOnce = false, 1000);
     }
 
     public void showToast(String msg) {

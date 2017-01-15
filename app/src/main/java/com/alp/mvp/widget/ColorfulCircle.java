@@ -1,4 +1,4 @@
-package com.alp.mvp.widgete;
+package com.alp.mvp.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

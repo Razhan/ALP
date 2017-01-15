@@ -20,35 +20,35 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_small" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
+        <com.alp.mvp.widget.IndicatedTextView
             android:id="@+id/team_header_gp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             app:name="GP" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
+        <com.alp.mvp.widget.IndicatedTextView
             android:id="@+id/team_header_w"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             app:name="W" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
+        <com.alp.mvp.widget.IndicatedTextView
             android:id="@+id/team_header_l"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             app:name="L" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
+        <com.alp.mvp.widget.IndicatedTextView
             android:id="@+id/team_header_t"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             app:name="T" />
 
-        <com.alp.mvp.widgete.IndicatedTextView
+        <com.alp.mvp.widget.IndicatedTextView
             android:id="@+id/team_header_pts"
             android:layout_width="0dp"
             android:layout_height="match_parent"

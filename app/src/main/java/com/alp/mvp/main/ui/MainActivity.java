@@ -97,4 +97,11 @@ public class MainActivity extends BaseActivity implements NavigationItemClickLis
             toolbar.setVisibility(View.VISIBLE);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        setDoubleClickExit(true);
+        super.onBackPressed();
+    }
+
 }

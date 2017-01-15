@@ -1,4 +1,4 @@
-package com.alp.mvp.widgete;
+package com.alp.mvp.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

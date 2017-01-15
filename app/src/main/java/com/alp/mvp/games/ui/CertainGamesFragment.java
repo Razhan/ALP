@@ -1,7 +1,6 @@
 package com.alp.mvp.games.ui;
 
 import android.app.Fragment;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +16,7 @@ import com.alp.mvp.di.components.DaggerGamesComponent;
 import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.games.GamesContract;
 import com.alp.mvp.games.GamesPresenter;
-import com.alp.mvp.widgete.LazyRecycleView;
+import com.alp.mvp.widget.LazyRecycleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,14 +61,6 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
                 .inject(this);
     }
 
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        if (isVisibleToUser && gameList != null) {
-//
-//            gameList.scrollToPosition(currentPos);
-//        }
-//    }
-
     @Override
     public void initView(Bundle savedInstanceState) {
         initList();
@@ -104,18 +95,18 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
 
     private void initList() {
         List<String> list1 = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            list1.add("");
+        for (int i = 0; i < 2; i++) {
+            list1.add("111");
         }
 
         List<String> list2 = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
-            list2.add("");
+            list2.add("222");
         }
 
         List<String> list3 = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            list3.add("");
+            list3.add("333");
         }
 
         List<List<String>> lists = new ArrayList<>();
@@ -126,7 +117,13 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
 
         adapter = new GameListAdapter(activity, lists);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity) {
+            @Override
+            public boolean canScrollHorizontally() {
+                return false;
+            }
+        };
+
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         gameList.setLayoutManager(linearLayoutManager);
         gameList.setAdapter(adapter);
@@ -142,13 +139,13 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
         switch (view.getId()) {
             case R.id.left_arrow:
                 if (currentPos > 0) {
-                    gameList.smoothScrollToPosition(--currentPos);
+                    gameList.scrollToPosition(--currentPos);
                     updateArrow();
                 }
                 break;
             case R.id.right_arrow:
                 if (currentPos < adapter.getItemCount() - 1) {
-                    gameList.smoothScrollToPosition(++currentPos);
+                    gameList.scrollToPosition(++currentPos);
                     updateArrow();
                 }
                 break;

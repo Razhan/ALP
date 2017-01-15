@@ -16,7 +16,7 @@ import com.alp.mvp.di.components.DaggerPlayersComponent;
 import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.players.PlayersContract;
 import com.alp.mvp.players.PlayersPresenter;
-import com.alp.mvp.widgete.IndicatedTextView;
+import com.alp.mvp.widget.IndicatedTextView;
 
 import java.util.ArrayList;
 import java.util.List;

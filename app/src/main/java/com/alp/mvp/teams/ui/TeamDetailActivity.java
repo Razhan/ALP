@@ -9,7 +9,7 @@ import android.view.View;
 import com.alp.library.base.ui.BaseActivity;
 import com.alp.mvp.R;
 import com.alp.mvp.adapter.PlayerAdapter;
-import com.alp.mvp.widgete.IndicatedTextView;
+import com.alp.mvp.widget.IndicatedTextView;
 
 import java.util.ArrayList;
 import java.util.List;
