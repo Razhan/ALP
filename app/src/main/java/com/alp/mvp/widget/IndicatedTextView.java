@@ -67,13 +67,17 @@ public final class IndicatedTextView extends FrameLayout {
     }
 
     public void onChosen() {
+        if (isAnimating) {
+            return;
+        }
+
         if (!isChosen) {
             isChosen = true;
             changeColor();
-        } else if (!isAnimating) {
-            isDescend = !isDescend;
-            rotateIndicator();
         }
+
+        isDescend = !isDescend;
+        rotateIndicator();
 
         if (sortListener != null) {
             sortListener.sortByKey(title.getText().toString(), isDescend);

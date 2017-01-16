@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+    
+    <ImageView
+        android:id="@+id/player_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48sp"
+        android:layout_centerVertical="true"
+        android:src="@color/light_grey"/>
+
+    <ImageView
+        android:id="@+id/team_avatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:src="@color/light_grey"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/player_avatar"
+        android:layout_toStartOf="@+id/team_avatar"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/assist_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:text="Dennis Topper (4)"/>
+
+        <TextView
+            android:id="@+id/player_assist"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Louis (16), White (2)"/>
+
+        <TextView
+            android:id="@+id/score_time"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="P 2, Vikings, Blues 1 / 11:18"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
