@@ -23,7 +23,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.alp.mvp.games.ui.LiveGameActivity.TYPE_ADDSCORE;
+import static com.alp.mvp.games.ui.LiveGameActivity.TYPE_ADD_PENALTY;
+import static com.alp.mvp.games.ui.LiveGameActivity.TYPE_ADD_SCORE;
 
 public class AddOperationFragment extends BaseFragment {
 
@@ -55,6 +56,8 @@ public class AddOperationFragment extends BaseFragment {
     private boolean isGoalSelected;
     private int margin;
 
+    private IAddOperationCallBack callBack;
+
     public static Fragment newInstance(int i) {
         Bundle args = new Bundle();
         AddOperationFragment fragment = new AddOperationFragment();
@@ -77,6 +80,8 @@ public class AddOperationFragment extends BaseFragment {
         }
 
         type = getArguments().getInt(KEY_TYPE, 0);
+
+        setCallBack();
     }
 
     @Override
@@ -103,8 +108,12 @@ public class AddOperationFragment extends BaseFragment {
         initType();
     }
 
+    public void setCallBack() {
+        this.callBack = (IAddOperationCallBack) activity;
+    }
+
     private void initType() {
-        if (type == TYPE_ADDSCORE) {
+        if (type == TYPE_ADD_SCORE) {
             addTimeWrapper.post(() -> addTimeWrapper.setTranslationX(addTimeWrapper.getHeight() + margin));
             selectPlayerList.setVisibility(View.VISIBLE);
             initPlayerSelect();
@@ -133,7 +142,7 @@ public class AddOperationFragment extends BaseFragment {
 
 
     @OnClick(R.id.time_wrapper)
-    public void onClick() {
+    public void onTimeClick() {
         PickerDialogFragment dialog = new PickerDialogFragment();
         dialog.setListener(time -> timeView.setText(time))
                 .show(getChildFragmentManager(), "dialog");
@@ -157,6 +166,18 @@ public class AddOperationFragment extends BaseFragment {
             initAddTime();
             animateStep(-addTimeWrapper.getHeight() - margin);
             step++;
+        }
+    }
+
+    @OnClick(R.id.confirm_button)
+    public void onButtonClick() {
+        if (callBack != null && type == TYPE_ADD_SCORE) {
+            callBack.addScore(1);
+            return;
+        }
+
+        if (callBack != null && type == TYPE_ADD_PENALTY) {
+            callBack.addPenalty("");
         }
     }
 

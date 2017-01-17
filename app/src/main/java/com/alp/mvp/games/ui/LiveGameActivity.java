@@ -1,6 +1,8 @@
 package com.alp.mvp.games.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
@@ -14,11 +16,14 @@ import com.alp.mvp.R;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LiveGameActivity extends BaseActivity {
+public class LiveGameActivity extends BaseActivity implements IAddOperationCallBack {
 
-    public final static int TYPE_ADDSCORE = 0;
-    public final static int TYPE_ADDPENALTY = 1;
-    private final static int ANIMATION_DURATION = 700;
+    public final static int TYPE_ADD_SCORE = 0;
+    public final static int TYPE_ADD_PENALTY = 1;
+    private final static int ANIMATION_DURATION = 600;
+    private final static int TEAM_LEFT = 0;
+    private final static int TEAM_RIGHT = 1;
+
     @BindView(R.id.score_left)
     TextView scoreLeft;
     @BindView(R.id.score_right)
@@ -35,6 +40,7 @@ public class LiveGameActivity extends BaseActivity {
     ImageView addScoreRight;
 
     private int margin;
+    private int selectedTeam = -1;
 
     @Override
     public int getContentViewId() {
@@ -60,17 +66,43 @@ public class LiveGameActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void addPenalty(String penalty) {
+        Log.d("addPenalty", "addPenalty");
+    }
+
+    @Override
+    public void addScore(int addedScore) {
+        Log.d("addScore", "addScore");
+    }
+
     @OnClick({R.id.add_score_left, R.id.add_score_right})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_score_left:
+                selectedTeam = TEAM_LEFT;
                 break;
             case R.id.add_score_right:
+                selectedTeam = TEAM_RIGHT;
                 break;
         }
-        getFragmentManager().beginTransaction()
-                .replace(R.id.add_score_wrapper, AddOperationFragment.newInstance(1)).commit();
-        toAddScorePage();
+
+        showDialog();
+    }
+
+    private void showDialog() {
+        final String[] operations = new String[]{"Add Score", "Add Penalty"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Operation");
+        builder.setPositiveButton("CANCEL", (dialog, which) -> dialog.dismiss());
+
+        builder.setItems(operations, (dialog, which) -> {
+            dialog.dismiss();
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.add_score_wrapper, AddOperationFragment.newInstance(which)).commit();
+            toAddScorePage();
+        }).show();
     }
 
     private void toAddScorePage() {
