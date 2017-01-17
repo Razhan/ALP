@@ -80,7 +80,7 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
             return;
         }
 
-        if (currentPos >=  adapter.getItemCount() - 1) {
+        if (currentPos >= adapter.getItemCount() - 1) {
             leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
             rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
             return;

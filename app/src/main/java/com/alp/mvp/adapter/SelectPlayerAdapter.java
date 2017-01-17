@@ -1,6 +1,7 @@
 package com.alp.mvp.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
     private final static String STRING_GOAL = "Goal";
     private final static String STRING_ASSIST = "Assist";
 
+    private int previousColor = -1;
+
     private int goalCount = 0;
     private int assistCount = 0;
 
@@ -38,16 +41,18 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
     }
 
     public void updatePlayer(View view) {
-        TextView textView = checkNotNull((TextView)view.findViewById(R.id.indicator));
+        TextView indicator = checkNotNull((TextView) view.findViewById(R.id.indicator));
+        TextView name = checkNotNull((TextView) view.findViewById(R.id.name));
 
-        if (textView.getVisibility() == View.VISIBLE) {
-            if (textView.getText().toString().equals(STRING_GOAL)) {
+        if (indicator.getVisibility() == View.VISIBLE) {
+            if (indicator.getText().toString().equals(STRING_GOAL)) {
                 goalCount--;
             } else {
                 assistCount--;
             }
 
-            textView.setVisibility(View.INVISIBLE);
+            indicator.setVisibility(View.INVISIBLE);
+            name.setTextColor(previousColor);
             return;
         }
 
@@ -62,8 +67,13 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
             return;
         }
 
-        textView.setText(text);
-        textView.setVisibility(View.VISIBLE);
+        indicator.setText(text);
+
+        if (previousColor < 0) {
+            previousColor = name.getCurrentTextColor();
+        }
+        name.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
+        indicator.setVisibility(View.VISIBLE);
     }
 
 }

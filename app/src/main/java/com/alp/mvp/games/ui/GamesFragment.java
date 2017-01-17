@@ -2,8 +2,6 @@ package com.alp.mvp.games.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.util.Log;
 
 import com.alp.mvp.base.BaseTabFragment;
 

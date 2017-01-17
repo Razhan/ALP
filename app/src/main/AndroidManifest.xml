@@ -25,7 +25,7 @@
             android:name=".teams.ui.TeamDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".games.ui.GameDetailActivity"
+            android:name=".games.ui.LiveGameActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

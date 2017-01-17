@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/detail_wrapper"
+    style="@style/GameCardStyle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/GameCardStyle">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                     android:id="@+id/title_bar_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:bar_title="Scoring"/>
+                    app:bar_title="Scoring" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/score_list"
@@ -43,7 +42,7 @@
                     android:id="@+id/title_bar_penalty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:bar_title="Penalties"/>
+                    app:bar_title="Penalties" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/penalty_list"
@@ -58,7 +57,7 @@
                     android:id="@+id/title_bar_attend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:bar_title="Attendance"/>
+                    app:bar_title="Attendance" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/attend_list"
@@ -75,17 +74,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:always_show="true"
-                    app:bar_title="Information"/>
+                    app:bar_title="Information" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="3dp"
-                    android:paddingTop="10dp"
                     android:paddingBottom="24dp"
-                    android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:text="Venue:     Fongong Arena \n\rTime:       20:00\n\rReferee:  David Park, Simon Cowe, Andrew Line"/>
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:text="Venue:     Fongong Arena \n\rTime:       20:00\n\rReferee:  David Park, Simon Cowe, Andrew Line" />
 
             </LinearLayout>
 

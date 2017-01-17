@@ -13,7 +13,7 @@ public final class MiscUtil {
         if (pos % 2 == 0) {
             view.setBackgroundColor(Color.WHITE);
         } else {
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.light_grey));
+            view.setBackgroundColor(ContextCompat.getColor(context, R.color.light_bg));
         }
     }
 
