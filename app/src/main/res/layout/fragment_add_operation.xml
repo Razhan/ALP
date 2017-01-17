@@ -33,6 +33,7 @@
                 android:tint="@color/colorPrimary" />
 
             <TextView
+                android:id="@+id/add_tip"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -40,7 +41,6 @@
                 android:layout_toStartOf="@+id/next_arrow"
                 android:gravity="center"
                 android:lineSpacingExtra="2dp"
-                android:text="First click the player who scored, than choose up by 2 assists and go next."
                 android:textColor="@android:color/black" />
 
         </RelativeLayout>
@@ -57,10 +57,10 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/select_player_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="invisible" />
+                android:layout_height="match_parent" />
 
             <RelativeLayout
+                android:id="@+id/add_time_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

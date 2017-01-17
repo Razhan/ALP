@@ -8,6 +8,8 @@ import com.alp.mvp.R;
 
 import java.util.List;
 
+import static com.alp.mvp.utils.MiscUtil.identifyLayer;
+
 public class AttendPlayerAdapter extends BasicRecyclerViewAdapter<String> {
 
     public AttendPlayerAdapter(Context context, List<String> list) {
@@ -21,6 +23,8 @@ public class AttendPlayerAdapter extends BasicRecyclerViewAdapter<String> {
 
     @Override
     protected void onBindItemViewHolder(ViewHolder holder, int position, String item) {
+        identifyLayer(mContext, holder.itemView, position);
+
     }
 
 }

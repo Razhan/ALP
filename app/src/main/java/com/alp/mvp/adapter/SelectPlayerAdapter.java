@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.alp.library.widget.recycleview.BasicRecyclerViewAdapter;
 import com.alp.library.widget.recycleview.ViewHolder;
 import com.alp.mvp.R;
+import com.alp.mvp.games.ui.AddOperationFragment;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
 
     private int goalCount = 0;
     private int assistCount = 0;
+
+    private AddOperationFragment.OnGoalSelectListener listener;
 
     public SelectPlayerAdapter(Context context, List<String> list) {
         super(context, list);
@@ -47,6 +50,10 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
         if (indicator.getVisibility() == View.VISIBLE) {
             if (indicator.getText().toString().equals(STRING_GOAL)) {
                 goalCount--;
+
+                if (listener != null) {
+                    listener.onGoalSelect(false);
+                }
             } else {
                 assistCount--;
             }
@@ -60,6 +67,10 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
         if (goalCount < MAX_GOAL) {
             text = STRING_GOAL;
             goalCount++;
+
+            if (listener != null) {
+                listener.onGoalSelect(true);
+            }
         } else if (assistCount < MAX_ASSIST) {
             text = STRING_ASSIST;
             assistCount++;
@@ -76,4 +87,7 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
         indicator.setVisibility(View.VISIBLE);
     }
 
+    public void setListener(AddOperationFragment.OnGoalSelectListener listener) {
+        this.listener = listener;
+    }
 }

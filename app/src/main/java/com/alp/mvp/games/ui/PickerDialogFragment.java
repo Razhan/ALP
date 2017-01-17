@@ -6,7 +6,7 @@ import mobi.upod.timedurationpicker.TimeDurationUtil;
 
 public class PickerDialogFragment extends TimeDurationPickerDialogFragment {
 
-    private AddScoreFragment.OnTimeSetListener listener;
+    private AddOperationFragment.OnTimeSetListener listener;
 
     @Override
     protected long getInitialDuration() {
@@ -25,8 +25,9 @@ public class PickerDialogFragment extends TimeDurationPickerDialogFragment {
         }
     }
 
-    public PickerDialogFragment setListener(AddScoreFragment.OnTimeSetListener listener) {
+    public PickerDialogFragment setListener(AddOperationFragment.OnTimeSetListener listener) {
         this.listener = listener;
         return this;
     }
+
 }

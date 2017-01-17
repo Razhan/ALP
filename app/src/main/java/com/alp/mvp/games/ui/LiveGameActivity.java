@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alp.library.base.ui.BaseActivity;
@@ -15,8 +16,9 @@ import butterknife.OnClick;
 
 public class LiveGameActivity extends BaseActivity {
 
-    private final static int ANIMATION_DURATION = 600;
-
+    public final static int TYPE_ADDSCORE = 0;
+    public final static int TYPE_ADDPENALTY = 1;
+    private final static int ANIMATION_DURATION = 700;
     @BindView(R.id.score_left)
     TextView scoreLeft;
     @BindView(R.id.score_right)
@@ -27,6 +29,10 @@ public class LiveGameActivity extends BaseActivity {
     FrameLayout detailWrapper;
     @BindView(R.id.game_card_wrapper)
     FrameLayout gameCardWrapper;
+    @BindView(R.id.add_score_left)
+    ImageView addScoreLeft;
+    @BindView(R.id.add_score_right)
+    ImageView addScoreRight;
 
     private int margin;
 
@@ -50,9 +56,7 @@ public class LiveGameActivity extends BaseActivity {
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.game_detail_wrapper, GameDetailFragment.newInstance())
-                    .add(R.id.add_score_wrapper, AddScoreFragment.newInstance())
-                    .commit();
+                    .add(R.id.game_detail_wrapper, GameDetailFragment.newInstance()).commit();
         }
     }
 
@@ -60,12 +64,25 @@ public class LiveGameActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_score_left:
-                animateView(addScoreWrapper, detailWrapper, true);
                 break;
             case R.id.add_score_right:
-                animateView(addScoreWrapper, detailWrapper, false);
                 break;
         }
+        getFragmentManager().beginTransaction()
+                .replace(R.id.add_score_wrapper, AddOperationFragment.newInstance(1)).commit();
+        toAddScorePage();
+    }
+
+    private void toAddScorePage() {
+        animateView(addScoreWrapper, detailWrapper, true);
+        addScoreLeft.setVisibility(View.INVISIBLE);
+        addScoreRight.setVisibility(View.INVISIBLE);
+    }
+
+    public void toDetailPage() {
+        animateView(addScoreWrapper, detailWrapper, false);
+        addScoreLeft.setVisibility(View.VISIBLE);
+        addScoreRight.setVisibility(View.VISIBLE);
     }
 
     private void animateView(View first, View second, boolean isGoUp) {

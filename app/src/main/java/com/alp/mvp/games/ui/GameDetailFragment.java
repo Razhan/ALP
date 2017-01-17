@@ -53,7 +53,7 @@ public class GameDetailFragment extends BaseFragment {
     @Override
     public void initData() {
         list1 = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             list1.add("");
         }
 
@@ -63,7 +63,7 @@ public class GameDetailFragment extends BaseFragment {
         }
 
         list3 = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             list3.add("");
         }
 
@@ -96,13 +96,13 @@ public class GameDetailFragment extends BaseFragment {
         scoreList.setLayoutManager(new LinearLayoutManager(activity));
         scoreList.setAdapter(scorePlayerAdapter);
 
-        attendPlayerAdapter = new AttendPlayerAdapter(activity, list2);
-        attendList.setLayoutManager(new LinearLayoutManager(activity));
-        attendList.setAdapter(attendPlayerAdapter);
-
-        penaltyAdapter = new PenaltyAdapter(activity, list3);
+        penaltyAdapter = new PenaltyAdapter(activity, list2);
         penaltyList.setLayoutManager(new LinearLayoutManager(activity));
         penaltyList.setAdapter(penaltyAdapter);
+
+        attendPlayerAdapter = new AttendPlayerAdapter(activity, list3);
+        attendList.setLayoutManager(new LinearLayoutManager(activity));
+        attendList.setAdapter(attendPlayerAdapter);
 
         galleryAdapter = new GalleryAdapter(activity, list4);
 
