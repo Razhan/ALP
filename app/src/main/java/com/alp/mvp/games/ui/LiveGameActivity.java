@@ -46,13 +46,14 @@ public class LiveGameActivity extends BaseActivity {
 
         margin = ((ViewGroup.MarginLayoutParams) detailWrapper.getLayoutParams()).topMargin * 2;
 
-        getFragmentManager().beginTransaction()
-                .add(R.id.game_detail_wrapper, GameDetailFragment.newInstance())
-                .add(R.id.add_score_wrapper, AddScoreFragment.newInstance())
-                .commit();
-
-
         addScoreWrapper.post(() -> addScoreWrapper.setTranslationY(addScoreWrapper.getHeight() + margin));
+
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.game_detail_wrapper, GameDetailFragment.newInstance())
+                    .add(R.id.add_score_wrapper, AddScoreFragment.newInstance())
+                    .commit();
+        }
     }
 
     @OnClick({R.id.add_score_left, R.id.add_score_right})
