@@ -10,7 +10,7 @@
 
     <include layout="@layout/item_game_header" />
 
-    <com.alp.mvp.widget.LazyRecycleView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/game_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

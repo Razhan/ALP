@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.alp.library.widget.recycleview.BasicRecyclerViewAdapter;
 import com.alp.library.widget.recycleview.ViewHolder;
 import com.alp.mvp.R;
+import com.alp.mvp.games.data.model.ScorePlayer;
 import com.alp.mvp.games.ui.AddOperationFragment;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 import static com.alp.mvp.utils.MiscUtil.identifyLayer;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
+public class GoalPlayerAdapter extends BasicRecyclerViewAdapter<String> {
 
     private final static int MAX_GOAL = 1;
     private final static int MAX_ASSIST = 2;
@@ -28,9 +29,12 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
     private int assistCount = 0;
 
     private AddOperationFragment.OnGoalSelectListener listener;
+    private ScorePlayer scorePlayer;
 
-    public SelectPlayerAdapter(Context context, List<String> list) {
+    public GoalPlayerAdapter(Context context, List<String> list) {
         super(context, list);
+
+        scorePlayer = new ScorePlayer();
     }
 
     @Override
@@ -43,19 +47,20 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
         identifyLayer(mContext, holder.itemView, position);
     }
 
-    public void updatePlayer(View view) {
+    public void updatePlayer(View view, String item) {
         TextView indicator = checkNotNull((TextView) view.findViewById(R.id.indicator));
         TextView name = checkNotNull((TextView) view.findViewById(R.id.name));
 
         if (indicator.getVisibility() == View.VISIBLE) {
             if (indicator.getText().toString().equals(STRING_GOAL)) {
                 goalCount--;
-
+                scorePlayer.removeGoalPlayer();
                 if (listener != null) {
                     listener.onGoalSelect(false);
                 }
             } else {
                 assistCount--;
+                scorePlayer.removeAssistPlayer(item);
             }
 
             indicator.setVisibility(View.INVISIBLE);
@@ -67,6 +72,7 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
         if (goalCount < MAX_GOAL) {
             text = STRING_GOAL;
             goalCount++;
+            scorePlayer.setGoalPlayer(item);
 
             if (listener != null) {
                 listener.onGoalSelect(true);
@@ -74,6 +80,7 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
         } else if (assistCount < MAX_ASSIST) {
             text = STRING_ASSIST;
             assistCount++;
+            scorePlayer.addAssistPlayer(item);
         } else {
             return;
         }
@@ -90,4 +97,9 @@ public class SelectPlayerAdapter extends BasicRecyclerViewAdapter<String> {
     public void setListener(AddOperationFragment.OnGoalSelectListener listener) {
         this.listener = listener;
     }
+
+    public ScorePlayer getScorePlayer() {
+        return scorePlayer;
+    }
+
 }

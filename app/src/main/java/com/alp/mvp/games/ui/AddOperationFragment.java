@@ -1,20 +1,23 @@
 package com.alp.mvp.games.ui;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alp.library.base.ui.BaseFragment;
 import com.alp.mvp.R;
-import com.alp.mvp.adapter.SelectPlayerAdapter;
+import com.alp.mvp.adapter.GoalPlayerAdapter;
+import com.alp.mvp.games.data.model.Penalty;
+import com.alp.mvp.games.data.model.Score;
 import com.alp.mvp.widget.SectionView;
 
 import java.util.ArrayList;
@@ -40,17 +43,19 @@ public class AddOperationFragment extends BaseFragment {
     ImageView nextArrow;
     @BindView(R.id.select_player_list)
     RecyclerView selectPlayerList;
-    @BindView(R.id.period_view)
-    SectionView periodView;
     @BindView(R.id.time)
     TextView timeView;
     @BindView(R.id.add_tip)
     TextView tip;
     @BindView(R.id.add_time_wrapper)
     RelativeLayout addTimeWrapper;
+    @BindView(R.id.period_view)
+    SectionView periodView;
+    @BindView(R.id.comment)
+    EditText comment;
 
-    private List<String> list1;
-    private SelectPlayerAdapter selectPlayerAdapter;
+    private List<String> list1, periodList;
+    private GoalPlayerAdapter goalPlayerAdapter;
     private int step = 0;
     private int type = 0;
     private boolean isGoalSelected;
@@ -58,7 +63,7 @@ public class AddOperationFragment extends BaseFragment {
 
     private IAddOperationCallBack callBack;
 
-    public static Fragment newInstance(int i) {
+    public static AddOperationFragment newInstance(int i) {
         Bundle args = new Bundle();
         AddOperationFragment fragment = new AddOperationFragment();
         args.putInt(KEY_TYPE, i);
@@ -76,8 +81,13 @@ public class AddOperationFragment extends BaseFragment {
         list1 = new ArrayList<>();
 
         for (int i = 0; i < 15; i++) {
-            list1.add("");
+            list1.add("11");
         }
+
+        periodList = new ArrayList<>();
+        periodList.add("1st period");
+        periodList.add("2nd period");
+        periodList.add("3rd period");
 
         type = getArguments().getInt(KEY_TYPE, 0);
 
@@ -88,9 +98,9 @@ public class AddOperationFragment extends BaseFragment {
     public void initView(Bundle savedInstanceState) {
         margin = ((ViewGroup.MarginLayoutParams) addTimeWrapper.getLayoutParams()).leftMargin * 2;
 
-        selectPlayerAdapter = new SelectPlayerAdapter(activity, list1);
-        selectPlayerAdapter.setClickListener((view, pos, item) -> selectPlayerAdapter.updatePlayer(view));
-        selectPlayerAdapter.setListener(res -> {
+        goalPlayerAdapter = new GoalPlayerAdapter(activity, list1);
+        goalPlayerAdapter.setClickListener((view, pos, item) -> goalPlayerAdapter.updatePlayer(view, item));
+        goalPlayerAdapter.setListener(res -> {
             isGoalSelected = res;
 
             if (isGoalSelected) {
@@ -101,9 +111,9 @@ public class AddOperationFragment extends BaseFragment {
         });
 
         selectPlayerList.setLayoutManager(new LinearLayoutManager(activity));
-        selectPlayerList.setAdapter(selectPlayerAdapter);
+        selectPlayerList.setAdapter(goalPlayerAdapter);
 
-        periodView.setSectionCount(3);
+        periodView.setSectionCount(periodList);
 
         initType();
     }
@@ -140,7 +150,6 @@ public class AddOperationFragment extends BaseFragment {
         nextArrow.setVisibility(View.INVISIBLE);
     }
 
-
     @OnClick(R.id.time_wrapper)
     public void onTimeClick() {
         PickerDialogFragment dialog = new PickerDialogFragment();
@@ -151,8 +160,7 @@ public class AddOperationFragment extends BaseFragment {
     @OnClick(R.id.back_arrow)
     public void onBackArrowClick() {
         if (step == FIRST_STEP) {
-            ((LiveGameActivity) activity).toDetailPage();
-            selectPlayerAdapter.notifyDataSetChanged();
+            callBack.backToDetailPage();
         } else {
             initPlayerSelect();
             animateStep(addTimeWrapper.getHeight() + margin);
@@ -171,14 +179,54 @@ public class AddOperationFragment extends BaseFragment {
 
     @OnClick(R.id.confirm_button)
     public void onButtonClick() {
-        if (callBack != null && type == TYPE_ADD_SCORE) {
-            callBack.addScore(1);
-            return;
+        if (callBack != null && type == TYPE_ADD_SCORE && checkInfo()) {
+            Score score = new Score();
+            score.setPlayer(goalPlayerAdapter.getScorePlayer());
+            score.setPeriod(periodView.getSelectedPeriod());
+            score.setTime(timeView.getText().toString());
+            score.setComment(comment.getText().toString());
+
+            callBack.addScore(score);
+            callBack.backToDetailPage();
         }
 
-        if (callBack != null && type == TYPE_ADD_PENALTY) {
-            callBack.addPenalty("");
+        if (callBack != null && type == TYPE_ADD_PENALTY && checkInfo()) {
+            Penalty penalty = new Penalty();
+            penalty.setPeriod(periodView.getSelectedPeriod());
+            penalty.setTime(timeView.getText().toString());
+            penalty.setComment(comment.getText().toString());
+
+            callBack.addPenalty(penalty);
+            callBack.backToDetailPage();
         }
+    }
+
+    public void onBack() {
+        onBackArrowClick();
+    }
+
+    private boolean checkInfo() {
+        if (TextUtils.isEmpty(periodView.getSelectedPeriod())) {
+            showToast("please select the period");
+            return false;
+        }
+
+        if (TextUtils.isEmpty(timeView.getText())) {
+            showToast("please input the time");
+            return false;
+        }
+
+        if (TextUtils.isEmpty(comment.getText())) {
+            showToast("please input the comment");
+            return false;
+        }
+
+        if (type == TYPE_ADD_SCORE && TextUtils.isEmpty(goalPlayerAdapter.getScorePlayer().getGoalPlayer())) {
+            showToast("please select the goal player");
+            return false;
+        }
+
+        return true;
     }
 
     private void animateStep(float value) {

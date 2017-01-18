@@ -1,8 +1,8 @@
 package com.alp.mvp.games.ui;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.alp.library.base.ui.BaseActivity;
 import com.alp.mvp.R;
+import com.alp.mvp.games.data.model.Penalty;
+import com.alp.mvp.games.data.model.Score;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,7 +22,7 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
 
     public final static int TYPE_ADD_SCORE = 0;
     public final static int TYPE_ADD_PENALTY = 1;
-    private final static int ANIMATION_DURATION = 600;
+    private final static int ANIMATION_DURATION = 700;
     private final static int TEAM_LEFT = 0;
     private final static int TEAM_RIGHT = 1;
 
@@ -42,6 +44,11 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
     private int margin;
     private int selectedTeam = -1;
 
+    private GameDetailFragment gameDetailFragment;
+    private AddOperationFragment addOperationFragment;
+
+    private FragmentManager manager;
+
     @Override
     public int getContentViewId() {
         return R.layout.activity_live_game;
@@ -53,27 +60,60 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
     }
 
     @Override
+    public void initData() {
+        gameDetailFragment = GameDetailFragment.newInstance();
+        manager = getFragmentManager();
+
+        margin = ((ViewGroup.MarginLayoutParams) detailWrapper.getLayoutParams()).topMargin * 2;
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        margin = ((ViewGroup.MarginLayoutParams) detailWrapper.getLayoutParams()).topMargin * 2;
+        if (savedInstanceState == null) {
+            manager.beginTransaction().add(R.id.game_detail_wrapper, gameDetailFragment).commit();
+        }
 
         addScoreWrapper.post(() -> addScoreWrapper.setTranslationY(addScoreWrapper.getHeight() + margin));
+    }
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.game_detail_wrapper, GameDetailFragment.newInstance()).commit();
+    @Override
+    public void addPenalty(Penalty penalty) {
+        gameDetailFragment.addPenalty("");
+
+        selectedTeam = -1;
+    }
+
+    @Override
+    public void addScore(Score score) {
+        TextView textView;
+
+        if (selectedTeam == TEAM_LEFT) {
+            textView = scoreLeft;
+        } else {
+            textView = scoreRight;
         }
+
+        int res = Integer.parseInt(textView.getText().toString()) + 1;
+        textView.setText(String.valueOf(res));
+
+        gameDetailFragment.addScore("");
+        selectedTeam = -1;
     }
 
     @Override
-    public void addPenalty(String penalty) {
-        Log.d("addPenalty", "addPenalty");
+    public void backToDetailPage() {
+        toDetailPage();
     }
 
     @Override
-    public void addScore(int addedScore) {
-        Log.d("addScore", "addScore");
+    public void onBackPressed() {
+        if (selectedTeam < 0) {
+            super.onBackPressed();
+        } else {
+            addOperationFragment.onBack();
+        }
     }
 
     @OnClick({R.id.add_score_left, R.id.add_score_right})
@@ -99,8 +139,9 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
         builder.setItems(operations, (dialog, which) -> {
             dialog.dismiss();
 
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.add_score_wrapper, AddOperationFragment.newInstance(which)).commit();
+            addOperationFragment = AddOperationFragment.newInstance(which);
+            manager.beginTransaction().replace(R.id.add_score_wrapper, addOperationFragment).commit();
+
             toAddScorePage();
         }).show();
     }

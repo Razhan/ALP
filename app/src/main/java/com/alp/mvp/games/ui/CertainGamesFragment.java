@@ -1,9 +1,11 @@
 package com.alp.mvp.games.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,12 +13,11 @@ import android.widget.ImageView;
 import com.alp.library.base.ui.BaseMVPFragment;
 import com.alp.mvp.ALPApplication;
 import com.alp.mvp.R;
-import com.alp.mvp.adapter.GameListAdapter;
+import com.alp.mvp.adapter.GameAdapter;
 import com.alp.mvp.di.components.DaggerGamesComponent;
 import com.alp.mvp.di.modules.ActivityModule;
 import com.alp.mvp.games.GamesContract;
 import com.alp.mvp.games.GamesPresenter;
-import com.alp.mvp.widget.LazyRecycleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +28,15 @@ import butterknife.OnClick;
 public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implements GamesContract.View {
 
     @BindView(R.id.game_list)
-    LazyRecycleView gameList;
+    RecyclerView gameList;
     @BindView(R.id.left_arrow)
     ImageView leftArrow;
     @BindView(R.id.right_arrow)
     ImageView rightArrow;
 
-    private GameListAdapter adapter;
+    private GameAdapter adapter;
     private int currentPos = 0;
+    private List<List<String>> lists;
 
     public static Fragment newInstance() {
         return new CertainGamesFragment();
@@ -62,38 +64,7 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
     }
 
     @Override
-    public void initView(Bundle savedInstanceState) {
-        initList();
-        updateArrow();
-    }
-
-    private void updateArrow() {
-        if (adapter == null || adapter.getItemCount() == 0) {
-            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
-            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
-            return;
-        }
-
-        if (currentPos <= 0) {
-            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
-            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
-            return;
-        }
-
-        if (currentPos >= adapter.getItemCount() - 1) {
-            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
-            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
-            return;
-        }
-
-        if (currentPos > 0 && currentPos < adapter.getItemCount() - 1) {
-            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
-            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
-            return;
-        }
-    }
-
-    private void initList() {
+    public void initData() {
         List<String> list1 = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             list1.add("111");
@@ -109,23 +80,51 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
             list3.add("333");
         }
 
-        List<List<String>> lists = new ArrayList<>();
+        lists = new ArrayList<>();
 
         lists.add(list1);
         lists.add(list2);
         lists.add(list3);
+    }
 
-        adapter = new GameListAdapter(activity, lists);
+    @Override
+    public void initView(Bundle savedInstanceState) {
+        initList();
+        updateArrow();
+    }
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity) {
-            @Override
-            public boolean canScrollHorizontally() {
-                return false;
-            }
-        };
+    private void updateArrow() {
+        if (adapter == null || lists.size() == 0) {
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            return;
+        }
 
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        gameList.setLayoutManager(linearLayoutManager);
+        if (currentPos <= 0) {
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            return;
+        }
+
+        if (currentPos >= lists.size() - 1) {
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
+            return;
+        }
+
+        if (currentPos > 0 && currentPos < lists.size() - 1) {
+            rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+            return;
+        }
+    }
+
+    private void initList() {
+        adapter = new GameAdapter(activity, lists.get(0));
+        adapter.setClickListener((view, pos, item) -> startActivity(new Intent(activity, LiveGameActivity.class)));
+        adapter.setAttendanceListener(null);
+
+        gameList.setLayoutManager(new LinearLayoutManager(activity));
         gameList.setAdapter(adapter);
     }
 
@@ -139,13 +138,13 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
         switch (view.getId()) {
             case R.id.left_arrow:
                 if (currentPos > 0) {
-                    gameList.scrollToPosition(--currentPos);
+                    adapter.set(lists.get(--currentPos));
                     updateArrow();
                 }
                 break;
             case R.id.right_arrow:
-                if (currentPos < adapter.getItemCount() - 1) {
-                    gameList.scrollToPosition(++currentPos);
+                if (currentPos < lists.size() - 1) {
+                    adapter.set(lists.get(++currentPos));
                     updateArrow();
                 }
                 break;

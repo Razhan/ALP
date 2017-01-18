@@ -9,7 +9,6 @@ public class LockableViewPager extends ViewPager {
 
     private boolean swipeLocked;
 
-
     public LockableViewPager(Context context) {
         this(context, null);
     }
@@ -35,7 +34,6 @@ public class LockableViewPager extends ViewPager {
     public boolean onInterceptTouchEvent(MotionEvent event) {
         return !swipeLocked && super.onInterceptTouchEvent(event);
     }
-
 
     @Override
     public boolean canScrollHorizontally(int direction) {

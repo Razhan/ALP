@@ -36,11 +36,13 @@
         android:text="RW" />
 
     <RelativeLayout
+        android:id="@+id/attend_wrapper"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2">
 
         <com.alp.mvp.widget.ColorfulCircle
+            android:id="@+id/indicator"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_centerInParent="true" />

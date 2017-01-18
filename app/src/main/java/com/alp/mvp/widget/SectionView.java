@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.alp.mvp.R;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,6 +24,7 @@ public class SectionView extends LinearLayout implements View.OnClickListener {
 
     private Context context;
     private View previousPeriod;
+    private String selectedPeriod;
 
     public SectionView(Context context) {
         this(context, null);
@@ -43,11 +46,13 @@ public class SectionView extends LinearLayout implements View.OnClickListener {
         this.context = context;
     }
 
-    public void setSectionCount(int sectionCount) {
+    public void setSectionCount(List<String> sections) {
         LayoutParams param = new LayoutParams(0, LayoutParams.MATCH_PARENT, 1);
         param.setMargins(10, 10, 10, 10);
-        for (int i = 0; i < sectionCount; i++) {
+        for (int i = 0; i < sections.size(); i++) {
             View view = LayoutInflater.from(context).inflate(R.layout.item_period, null, false);
+
+            ((TextView) view.findViewById(R.id.name)).setText(sections.get(i));
             view.setOnClickListener(this);
             sectionWrapper.addView(view, param);
         }
@@ -55,11 +60,13 @@ public class SectionView extends LinearLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        selectedPeriod = ((TextView) v.findViewById(R.id.name)).getText().toString();
         changeColor(v);
 
         if (previousPeriod != null) {
             changeColor(previousPeriod);
         }
+
         previousPeriod = v;
     }
 
@@ -71,13 +78,17 @@ public class SectionView extends LinearLayout implements View.OnClickListener {
 
         if (elevation > 0) {
             wrapper.setCardElevation(0);
-            textView.setBackgroundColor(Color.WHITE);
+            textView.setBackground(getResources().getDrawable(R.drawable.bg_border));
             textView.setTextColor(Color.BLACK);
         } else {
             wrapper.setCardElevation(8);
             textView.setBackgroundColor(ContextCompat.getColor(context, com.alp.library.R.color.colorPrimary));
             textView.setTextColor(Color.WHITE);
         }
-
     }
+
+    public String getSelectedPeriod() {
+        return selectedPeriod;
+    }
+
 }

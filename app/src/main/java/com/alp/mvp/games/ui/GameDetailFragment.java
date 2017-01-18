@@ -1,6 +1,5 @@
 package com.alp.mvp.games.ui;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,13 +9,15 @@ import com.alp.mvp.R;
 import com.alp.mvp.adapter.AttendPlayerAdapter;
 import com.alp.mvp.adapter.GalleryAdapter;
 import com.alp.mvp.adapter.PenaltyAdapter;
-import com.alp.mvp.adapter.ScorePlayerAdapter;
+import com.alp.mvp.adapter.ScoreAdapter;
 import com.alp.mvp.widget.TitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.alp.mvp.utils.MiscUtil.buildDeleteDialog;
 
 public class GameDetailFragment extends BaseFragment {
 
@@ -35,13 +36,13 @@ public class GameDetailFragment extends BaseFragment {
     @BindView(R.id.gallery)
     RecyclerView gallery;
 
-    private List<String> list1, list2, list3, list4, list5;
-    private ScorePlayerAdapter scorePlayerAdapter;
+    private List<String> list1, list2, list3, list4;
+    private ScoreAdapter scoreAdapter;
     private AttendPlayerAdapter attendPlayerAdapter;
     private PenaltyAdapter penaltyAdapter;
     private GalleryAdapter galleryAdapter;
 
-    public static Fragment newInstance() {
+    public static GameDetailFragment newInstance() {
         return new GameDetailFragment();
     }
 
@@ -72,10 +73,6 @@ public class GameDetailFragment extends BaseFragment {
             list4.add("");
         }
 
-        list5 = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            list5.add("");
-        }
     }
 
     @Override
@@ -92,15 +89,22 @@ public class GameDetailFragment extends BaseFragment {
         penaltyList.setNestedScrollingEnabled(false);
         attendList.setNestedScrollingEnabled(false);
 
-        scorePlayerAdapter = new ScorePlayerAdapter(activity, list1);
+        scoreAdapter = new ScoreAdapter(activity, list1);
+        scoreAdapter.setLongClickListener((view, pos, item) -> buildDeleteDialog(activity,
+                (dialog, which) -> scoreAdapter.remove(pos)));
+
         scoreList.setLayoutManager(new LinearLayoutManager(activity));
-        scoreList.setAdapter(scorePlayerAdapter);
+        scoreList.setAdapter(scoreAdapter);
 
         penaltyAdapter = new PenaltyAdapter(activity, list2);
+        penaltyAdapter.setLongClickListener((view, pos, item) -> buildDeleteDialog(activity,
+                (dialog, which) -> penaltyAdapter.remove(pos)));
+
         penaltyList.setLayoutManager(new LinearLayoutManager(activity));
         penaltyList.setAdapter(penaltyAdapter);
 
         attendPlayerAdapter = new AttendPlayerAdapter(activity, list3);
+        attendPlayerAdapter.setAttendanceListener(null);
         attendList.setLayoutManager(new LinearLayoutManager(activity));
         attendList.setAdapter(attendPlayerAdapter);
 
@@ -110,6 +114,14 @@ public class GameDetailFragment extends BaseFragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         gallery.setLayoutManager(linearLayoutManager);
         gallery.setAdapter(galleryAdapter);
+    }
+
+    public void addScore(String str) {
+        scoreAdapter.add(0, str);
+    }
+
+    public void addPenalty(String str) {
+        penaltyAdapter.add(0, str);
     }
 
 }

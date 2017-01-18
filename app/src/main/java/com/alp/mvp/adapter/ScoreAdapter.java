@@ -8,9 +8,9 @@ import com.alp.mvp.R;
 
 import java.util.List;
 
-public class ScorePlayerAdapter extends BasicRecyclerViewAdapter<String> {
+public class ScoreAdapter extends BasicRecyclerViewAdapter<String> {
 
-    public ScorePlayerAdapter(Context context, List<String> list) {
+    public ScoreAdapter(Context context, List<String> list) {
         super(context, list);
     }
 
