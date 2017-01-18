@@ -70,7 +70,7 @@
                     android:layout_height="40dp"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="24dp"
-                    android:background="@drawable/bg_rounded_corners_red_large"
+                    android:background="@drawable/bg_rounded_corners_red_m"
                     android:stateListAnimator="@null"
                     android:text="save"
                     android:textColor="@android:color/white" />

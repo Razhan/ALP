@@ -27,7 +27,7 @@
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bg_rounded_corners_red"
+        android:background="@drawable/bg_rounded_corners_red_s"
         android:gravity="center"
         android:paddingBottom="1dp"
         android:paddingTop="1dp"
