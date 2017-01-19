@@ -2,7 +2,9 @@ package com.alp.mvp;
 
 import android.app.Application;
 
+import com.alp.mvp.di.components.ApplicationComponent;
 import com.alp.mvp.di.components.DaggerApplicationComponent;
+import com.alp.mvp.di.modules.ApplicationModule;
 
 public class ALPApplication extends Application {
 
