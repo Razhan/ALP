@@ -1,5 +1,9 @@
 package com.alp.mvp.games.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
 import com.alp.library.base.ui.BaseMVPLoadFragment;
@@ -25,6 +30,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.alp.library.utils.ViewUtil.dpToPx;
+
 public class CertainGamesFragment extends BaseMVPLoadFragment<String, GamesPresenter>
         implements GamesContract.View {
 
@@ -38,6 +45,8 @@ public class CertainGamesFragment extends BaseMVPLoadFragment<String, GamesPrese
     private GameAdapter adapter;
     private int currentPos = 0;
     private List<List<String>> lists;
+
+    private boolean isAnimation;
 
     public static Fragment newInstance() {
         return new CertainGamesFragment();
@@ -142,18 +151,42 @@ public class CertainGamesFragment extends BaseMVPLoadFragment<String, GamesPrese
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.left_arrow:
-                if (lists != null && currentPos > 0) {
+                if (!isAnimation && lists != null && currentPos > 0) {
+                    animateList();
                     adapter.set(lists.get(--currentPos));
                     updateArrow();
                 }
                 break;
             case R.id.right_arrow:
-                if (lists != null && currentPos < lists.size() - 1) {
+                if (!isAnimation && lists != null && currentPos < lists.size() - 1) {
+                    animateList();
                     adapter.set(lists.get(++currentPos));
                     updateArrow();
                 }
                 break;
         }
+    }
+
+    private void animateList() {
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(gameList, View.ALPHA, 0, 1);
+        ObjectAnimator transY = ObjectAnimator.ofFloat(gameList, View.TRANSLATION_Y, dpToPx(activity, 40), 0);
+
+        AnimatorSet set = new AnimatorSet();
+        set.setInterpolator(new DecelerateInterpolator());
+        set.setDuration(500);
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                isAnimation = false;
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                isAnimation = true;
+            }
+        });
+        set.playTogether(alpha, transY);
+        set.start();
     }
 
 }

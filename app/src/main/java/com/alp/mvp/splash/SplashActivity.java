@@ -35,6 +35,8 @@ public class SplashActivity extends BaseActivity {
     LinearLayout buttonWrapper;
     @BindView(R.id.activity_splash)
     RelativeLayout splash;
+    @BindView(R.id.icons)
+    ImageView icons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,11 @@ public class SplashActivity extends BaseActivity {
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(background, View.SCALE_Y, 1.1f);
         ObjectAnimator alpha = ObjectAnimator.ofFloat(blender, View.ALPHA, 0.5f);
         ObjectAnimator transY = ObjectAnimator.ofFloat(buttonWrapper, View.TRANSLATION_Y, buttonWrapper.getHeight(), 0);
+        ObjectAnimator alphaIcons = ObjectAnimator.ofFloat(icons, View.ALPHA, 0, 1);
 
         AnimatorSet set = new AnimatorSet();
         set.setInterpolator(new DecelerateInterpolator());
-        set.playTogether(scaleX, scaleY, alpha, transY);
+        set.playTogether(scaleX, scaleY, alpha, transY, alphaIcons);
         set.setDuration(ANIMATION_DURATION);
         set.start();
     }

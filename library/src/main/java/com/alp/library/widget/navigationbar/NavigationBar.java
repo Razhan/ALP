@@ -23,7 +23,7 @@ public class NavigationBar extends FrameLayout implements View.OnClickListener {
     private int activeColor;
     private int inActiveColor;
 
-    private int moveDistance;
+    private float moveDistance;
     private int currentTabPosition;
 
     private EnhancedFragmentManager manager;

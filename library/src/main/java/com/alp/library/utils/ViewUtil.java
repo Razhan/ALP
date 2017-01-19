@@ -10,13 +10,14 @@ public final class ViewUtil {
         return (displayMetrics.widthPixels);
     }
 
-    public static int pxToDp(Context context, int px) {
+    public static float pxToDp(Context context, int px) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px / ((float)displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
-    public static int dpToPx(Context context, int dp) {
+    public static float dpToPx(Context context, int dp) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return dp * ((float)displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
+
 }
