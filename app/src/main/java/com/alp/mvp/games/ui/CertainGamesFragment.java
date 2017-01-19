@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.alp.library.base.ui.BaseMVPLoadFragment;
@@ -152,27 +153,49 @@ public class CertainGamesFragment extends BaseMVPLoadFragment<String, GamesPrese
         switch (view.getId()) {
             case R.id.left_arrow:
                 if (!isAnimation && lists != null && currentPos > 0) {
-                    animateList();
-                    adapter.set(lists.get(--currentPos));
+                    --currentPos;
+                    animateHideList();
                     updateArrow();
                 }
                 break;
             case R.id.right_arrow:
                 if (!isAnimation && lists != null && currentPos < lists.size() - 1) {
-                    animateList();
-                    adapter.set(lists.get(++currentPos));
+                    ++currentPos;
+                    animateHideList();
                     updateArrow();
                 }
                 break;
         }
     }
 
-    private void animateList() {
+    private void animateHideList() {
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(gameList, View.ALPHA, 1, 0);
+        ObjectAnimator transY = ObjectAnimator.ofFloat(gameList, View.TRANSLATION_Y, 0, dpToPx(activity, 40));
+
+        AnimatorSet set = new AnimatorSet();
+        set.setInterpolator(new LinearInterpolator());
+        set.setDuration(500);
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                animateShowList();
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                isAnimation = true;
+            }
+        });
+        set.playTogether(alpha, transY);
+        set.start();
+    }
+
+    private void animateShowList() {
         ObjectAnimator alpha = ObjectAnimator.ofFloat(gameList, View.ALPHA, 0, 1);
         ObjectAnimator transY = ObjectAnimator.ofFloat(gameList, View.TRANSLATION_Y, dpToPx(activity, 40), 0);
 
         AnimatorSet set = new AnimatorSet();
-        set.setInterpolator(new DecelerateInterpolator());
+        set.setInterpolator(new LinearInterpolator());
         set.setDuration(500);
         set.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -182,7 +205,7 @@ public class CertainGamesFragment extends BaseMVPLoadFragment<String, GamesPrese
 
             @Override
             public void onAnimationStart(Animator animation) {
-                isAnimation = true;
+                adapter.set(lists.get(currentPos));
             }
         });
         set.playTogether(alpha, transY);

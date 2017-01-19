@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 public class SplashActivity extends BaseActivity {
 
-    private final static int ANIMATION_DURATION = 1300;
+    private final static int ANIMATION_DURATION = 1000;
 
     @BindView(R.id.background)
     ImageView background;

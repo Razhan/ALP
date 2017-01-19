@@ -58,19 +58,19 @@ public class MainActivity extends BaseActivity implements NavigationItemClickLis
         FragmentManager manager = getFragmentManager();
 
         fragments.add(GamesFragment.newInstance());
-        drawables.add(R.drawable.ic_people);
+        drawables.add(R.drawable.ic_games);
         tags.add("Games");
 
         fragments.add(PlayersFragment.newInstance());
-        drawables.add(R.drawable.ic_people);
+        drawables.add(R.drawable.ic_user);
         tags.add("Players");
 
         fragments.add(TeamsFragment.newInstance());
-        drawables.add(R.drawable.ic_people);
+        drawables.add(R.drawable.ic_team);
         tags.add("Teams");
 
         fragments.add(LeagueFragment.newInstance());
-        drawables.add(R.drawable.ic_people);
+        drawables.add(R.drawable.ic_info);
         tags.add("Info");
 
         NavigationBarFragmentAdapter adapter = new NavigationBarFragmentAdapter(fragments, drawables, tags);
