@@ -2,6 +2,9 @@ package com.alp.mvp.games.ui;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +21,7 @@ import com.alp.mvp.games.data.model.Score;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LiveGameActivity extends BaseActivity implements IAddOperationCallBack {
+public class LiveGameActivity extends BaseActivity implements IAddOperationCallBack, SwipeRefreshLayout.OnRefreshListener {
 
     public final static int TYPE_ADD_SCORE = 0;
     public final static int TYPE_ADD_PENALTY = 1;
@@ -40,6 +43,8 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
     ImageView addScoreLeft;
     @BindView(R.id.add_score_right)
     ImageView addScoreRight;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refresh;
 
     private int margin;
     private int selectedTeam = -1;
@@ -75,6 +80,8 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
             manager.beginTransaction().add(R.id.game_detail_wrapper, gameDetailFragment).commit();
         }
 
+        refresh.setOnRefreshListener(this);
+        refresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary));
         addScoreWrapper.post(() -> addScoreWrapper.setTranslationY(addScoreWrapper.getHeight() + margin));
     }
 
@@ -114,6 +121,11 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
         } else {
             addOperationFragment.onBack();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(() -> refresh.setRefreshing(false), 1500);
     }
 
     @OnClick({R.id.add_score_left, R.id.add_score_right})
