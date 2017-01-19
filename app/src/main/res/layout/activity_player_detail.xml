@@ -74,43 +74,36 @@
 
     </android.support.v7.widget.CardView>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.alp.mvp.widget.ArrowedTextView
+            android:id="@+id/player_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            app:title="Contact Information" />
 
-            <com.alp.mvp.widget.ArrowedTextView
-                android:id="@+id/player_contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="Contact Information" />
+        <com.alp.mvp.widget.ArrowedTextView
+            android:id="@+id/player_posts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Posts" />
 
-            <com.alp.mvp.widget.ArrowedTextView
-                android:id="@+id/player_posts"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="Posts" />
+        <com.alp.mvp.widget.ArrowedTextView
+            android:id="@+id/player_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Stats" />
 
-            <com.alp.mvp.widget.ArrowedTextView
-                android:id="@+id/player_stats"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="Stats" />
+        <com.alp.mvp.widget.ArrowedTextView
+            android:id="@+id/player_interests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Interests" />
 
-            <com.alp.mvp.widget.ArrowedTextView
-                android:id="@+id/player_interests"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="Interests" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

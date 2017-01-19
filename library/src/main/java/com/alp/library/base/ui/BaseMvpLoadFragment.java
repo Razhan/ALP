@@ -22,9 +22,9 @@ public abstract class BaseMVPLoadFragment<T, P extends BasePresenter> extends Ba
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        loadingView = view.findViewById(R.id.loadingView);
-        contentView = view.findViewById(R.id.contentView);
-        errorView = (TextView)view.findViewById(R.id.errorView);
+        loadingView = view.findViewById(R.id.loading_view);
+        contentView = view.findViewById(R.id.content_view);
+        errorView = (TextView)view.findViewById(R.id.error_view);
 
         if (loadingView == null) {
             throw new NullPointerException("Loading view is null!");
@@ -43,14 +43,14 @@ public abstract class BaseMVPLoadFragment<T, P extends BasePresenter> extends Ba
 
     @Override
     public void showLoading(boolean pullToRefresh) {
-
         if (!pullToRefresh) {
             LoadAnimationUtil.showLoading(loadingView, contentView, errorView);
         }
     }
 
+    @CallSuper
     @Override
-    public void showContent() {
+    public void showContent(T data) {
         LoadAnimationUtil.showContent(loadingView, contentView, errorView);
     }
 

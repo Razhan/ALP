@@ -8,8 +8,8 @@ import com.alp.library.R;
 import com.alp.library.presenter.BasePresenter;
 import com.alp.library.utils.LoadAnimationUtil;
 
-public abstract class BaseMVPLoadActivity<M, P extends BasePresenter> extends BaseMVPActivity<P>
-        implements MVPLoadView<M> {
+public abstract class BaseMVPLoadActivity<T, P extends BasePresenter> extends BaseMVPActivity<P>
+        implements MVPLoadView<T> {
 
     protected View loadingView;
     protected View contentView;
@@ -19,9 +19,9 @@ public abstract class BaseMVPLoadActivity<M, P extends BasePresenter> extends Ba
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        loadingView = findViewById(R.id.loadingView);
-        contentView = findViewById(R.id.contentView);
-        errorView = (TextView)findViewById(R.id.errorView);
+        loadingView = findViewById(R.id.loading_view);
+        contentView = findViewById(R.id.content_view);
+        errorView = (TextView)findViewById(R.id.error_view);
 
         if (loadingView == null) {
             throw new NullPointerException("Loading view is null!");
@@ -46,7 +46,7 @@ public abstract class BaseMVPLoadActivity<M, P extends BasePresenter> extends Ba
     }
 
     @Override
-    public void showContent() {
+    public void showContent(T data) {
         LoadAnimationUtil.showContent(loadingView, contentView, errorView);
     }
 

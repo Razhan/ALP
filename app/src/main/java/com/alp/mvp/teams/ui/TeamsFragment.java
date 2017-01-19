@@ -21,6 +21,7 @@ public class TeamsFragment extends BaseTabFragment {
         pagerAdapter.addFragment(CertainTeamsFragment.newInstance(), "Division D");
 
         viewPager.setAdapter(pagerAdapter);
+        viewPager.setOffscreenPageLimit(pagerAdapter.getCount() - 1);
         tabLayout.setupWithViewPager(viewPager);
     }
 

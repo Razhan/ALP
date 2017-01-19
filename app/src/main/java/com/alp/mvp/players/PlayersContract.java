@@ -1,13 +1,12 @@
 package com.alp.mvp.players;
 
-import com.alp.library.base.ui.MVPView;
+import com.alp.library.base.ui.MVPLoadView;
 import com.alp.library.presenter.IPresenter;
 
 public class PlayersContract {
 
-    public interface View extends MVPView {
+    public interface View extends MVPLoadView<String> {
 
-        void showPlayers();
     }
 
     public interface Presenter extends IPresenter {

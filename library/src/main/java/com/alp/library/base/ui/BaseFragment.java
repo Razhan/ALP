@@ -49,14 +49,10 @@ public abstract class BaseFragment extends Fragment implements InitView {
         View rootView = inflater.inflate(getContentViewId(), container, false);
         ButterKnife.bind(this, rootView);
 
-        return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         initData();
         initView(savedInstanceState);
+
+        return rootView;
     }
 
     @Override

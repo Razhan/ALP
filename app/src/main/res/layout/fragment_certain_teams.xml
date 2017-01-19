@@ -10,9 +10,19 @@
 
     <include layout="@layout/item_team_header" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/team_list"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <include layout="@layout/loading_view_wrapper" />
+
+        <include layout="@layout/error_view_wrapper" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
 
 </LinearLayout>

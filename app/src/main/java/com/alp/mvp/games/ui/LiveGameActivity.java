@@ -88,8 +88,6 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
     @Override
     public void addPenalty(Penalty penalty) {
         gameDetailFragment.addPenalty("");
-
-        selectedTeam = -1;
     }
 
     @Override
@@ -106,11 +104,11 @@ public class LiveGameActivity extends BaseActivity implements IAddOperationCallB
         textView.setText(String.valueOf(res));
 
         gameDetailFragment.addScore("");
-        selectedTeam = -1;
     }
 
     @Override
     public void backToDetailPage() {
+        selectedTeam = -1;
         toDetailPage();
     }
 

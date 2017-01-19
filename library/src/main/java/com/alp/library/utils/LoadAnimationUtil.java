@@ -24,29 +24,19 @@ public class LoadAnimationUtil {
     public static void showErrorView(@NonNull final View loadingView, @NonNull final View contentView,
                                      final View errorView) {
         contentView.setVisibility(View.GONE);
-
-        AnimatorSet set = new AnimatorSet();
+        loadingView.setVisibility(View.GONE);
         ObjectAnimator in = ObjectAnimator.ofFloat(errorView, View.ALPHA, 1f);
-        ObjectAnimator loadingOut = ObjectAnimator.ofFloat(loadingView,  View.ALPHA, 0f);
 
-        set.playTogether(in, loadingOut);
-        set.setDuration(200);
+        in.setDuration(200);
 
-        set.addListener(new AnimatorListenerAdapter() {
+        in.addListener(new AnimatorListenerAdapter() {
 
             @Override public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
                 errorView.setVisibility(View.VISIBLE);
-            }
-
-            @Override public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                loadingView.setVisibility(View.GONE);
-                loadingView.setAlpha(1f);
             }
         });
 
-        set.start();
+        in.start();
     }
 
     public static void showContent(@NonNull final View loadingView, @NonNull final View contentView,

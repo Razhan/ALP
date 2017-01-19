@@ -1,7 +1,7 @@
 package com.alp.mvp.games;
 
 import android.app.Activity;
-import android.util.Log;
+import android.os.Handler;
 
 import com.alp.library.presenter.BasePresenter;
 import com.alp.library.usecase.UseCase;
@@ -14,6 +14,8 @@ public final class GamesPresenter extends BasePresenter<GamesContract.View> impl
 
     private final UseCase getGames;
 
+    private int count;
+
     @Inject
     GamesPresenter(@Named(GetGames.NAME) UseCase useCase, Activity activity) {
         super(activity);
@@ -22,8 +24,14 @@ public final class GamesPresenter extends BasePresenter<GamesContract.View> impl
 
     @Override
     public void getGames() {
-        Log.d("getGames", "getGames");
-        getView().showGames();
+        getView().showLoading(false);
+
+        if (count > 0) {
+            new Handler().postDelayed(() -> getView().showContent(""), 1000);
+        } else {
+            new Handler().postDelayed(() -> getView().showError("An error has occurred! click here to retry", false), 1000);
+            count++;
+        }
     }
 
     @Override

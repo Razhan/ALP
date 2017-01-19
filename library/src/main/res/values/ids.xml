@@ -9,8 +9,8 @@
 
     <item name="colorPrimary" type="color" />
 
-    <item name="contentView" type="id" />
-    <item name="errorView" type="id" />
-    <item name="loadingView" type="id" />
+    <item name="content_view" type="id" />
+    <item name="error_view" type="id" />
+    <item name="loading_view" type="id" />
 
 </resources>

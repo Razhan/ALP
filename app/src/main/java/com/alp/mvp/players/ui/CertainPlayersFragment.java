@@ -3,12 +3,12 @@ package com.alp.mvp.players.ui;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
-import com.alp.library.base.ui.BaseMVPFragment;
+import com.alp.library.base.ui.BaseMVPLoadFragment;
 import com.alp.mvp.ALPApplication;
 import com.alp.mvp.R;
 import com.alp.mvp.adapter.PlayerAdapter;
@@ -24,9 +24,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> implements PlayersContract.View {
+public class CertainPlayersFragment extends BaseMVPLoadFragment<String, PlayersPresenter>
+        implements PlayersContract.View {
 
-    @BindView(R.id.player_list)
+    @BindView(R.id.content_view)
     RecyclerView playerList;
 
     private IndicatedTextView previousItem;
@@ -37,10 +38,10 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        getPresenter().getPlayers();
+        loadData(false);
     }
 
     @Override
@@ -62,13 +63,13 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
         initList();
     }
 
-    private void initList() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 28; i++) {
-            list.add("");
-        }
+    @Override
+    public void loadData(boolean pullToRefresh) {
+        getPresenter().getPlayers();
+    }
 
-        adapter = new PlayerAdapter(activity, list);
+    private void initList() {
+        adapter = new PlayerAdapter(activity, null);
 
         adapter.setClickListener((view, pos, item) -> startActivity(new Intent(activity, PlayerDetailActivity.class)));
 
@@ -77,8 +78,15 @@ public class CertainPlayersFragment extends BaseMVPFragment<PlayersPresenter> im
     }
 
     @Override
-    public void showPlayers() {
-        Log.d(TAG, "showPlayers");
+    public void showContent(String data) {
+        super.showContent(data);
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 28; i++) {
+            list.add("");
+        }
+
+        adapter.set(list);
     }
 
     @OnClick({R.id.player_header_position, R.id.player_header_gp, R.id.player_header_goal,

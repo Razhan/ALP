@@ -1,7 +1,7 @@
 package com.alp.mvp.players;
 
 import android.app.Activity;
-import android.util.Log;
+import android.os.Handler;
 
 import com.alp.library.presenter.BasePresenter;
 import com.alp.library.usecase.UseCase;
@@ -22,8 +22,9 @@ public final class PlayersPresenter extends BasePresenter<PlayersContract.View> 
 
     @Override
     public void getPlayers() {
-        Log.d("getPlayers", "getPlayers");
-        getView().showPlayers();
+        getView().showLoading(false);
+
+        new Handler().postDelayed(() -> getView().showContent(""), 1000);
     }
 
     @Override

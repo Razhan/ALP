@@ -3,14 +3,14 @@ package com.alp.mvp.games.ui;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.alp.library.base.ui.BaseMVPFragment;
+import com.alp.library.base.ui.BaseMVPLoadFragment;
 import com.alp.mvp.ALPApplication;
 import com.alp.mvp.R;
 import com.alp.mvp.adapter.GameAdapter;
@@ -25,9 +25,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implements GamesContract.View {
+public class CertainGamesFragment extends BaseMVPLoadFragment<String, GamesPresenter>
+        implements GamesContract.View {
 
-    @BindView(R.id.game_list)
+    @BindView(R.id.content_view)
     RecyclerView gameList;
     @BindView(R.id.left_arrow)
     ImageView leftArrow;
@@ -43,10 +44,10 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        getPresenter().getGames();
+        loadData(false);
     }
 
     @Override
@@ -64,37 +65,13 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
     }
 
     @Override
-    public void initData() {
-        List<String> list1 = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            list1.add("111");
-        }
-
-        List<String> list2 = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            list2.add("222");
-        }
-
-        List<String> list3 = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            list3.add("333");
-        }
-
-        lists = new ArrayList<>();
-
-        lists.add(list1);
-        lists.add(list2);
-        lists.add(list3);
-    }
-
-    @Override
     public void initView(Bundle savedInstanceState) {
         initList();
         updateArrow();
     }
 
     private void updateArrow() {
-        if (adapter == null || lists.size() == 0) {
+        if (lists == null || lists.size() == 0 || adapter == null) {
             leftArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
             rightArrow.setColorFilter(ContextCompat.getColor(activity, R.color.grey));
             return;
@@ -119,7 +96,7 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
     }
 
     private void initList() {
-        adapter = new GameAdapter(activity, lists.get(0));
+        adapter = new GameAdapter(activity, null);
         adapter.setClickListener((view, pos, item) -> startActivity(new Intent(activity, LiveGameActivity.class)));
         adapter.setAttendanceListener(null);
 
@@ -128,21 +105,50 @@ public class CertainGamesFragment extends BaseMVPFragment<GamesPresenter> implem
     }
 
     @Override
-    public void showGames() {
-        Log.d(TAG, "showGames");
+    public void loadData(boolean pullToRefresh) {
+        getPresenter().getGames();
+    }
+
+    @Override
+    public void showContent(String data) {
+        super.showContent(data);
+
+        List<String> list1 = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            list1.add("111");
+        }
+
+        List<String> list2 = new ArrayList<>();
+        for (int i = 0; i < 25; i++) {
+            list2.add("222");
+        }
+
+        List<String> list3 = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            list3.add("333");
+        }
+
+        lists = new ArrayList<>();
+
+        lists.add(list1);
+        lists.add(list2);
+        lists.add(list3);
+
+        adapter.set(lists.get(0));
+        updateArrow();
     }
 
     @OnClick({R.id.left_arrow, R.id.right_arrow})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.left_arrow:
-                if (currentPos > 0) {
+                if (lists != null && currentPos > 0) {
                     adapter.set(lists.get(--currentPos));
                     updateArrow();
                 }
                 break;
             case R.id.right_arrow:
-                if (currentPos < lists.size() - 1) {
+                if (lists != null && currentPos < lists.size() - 1) {
                     adapter.set(lists.get(++currentPos));
                     updateArrow();
                 }

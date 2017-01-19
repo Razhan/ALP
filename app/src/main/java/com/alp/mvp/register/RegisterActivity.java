@@ -1,4 +1,4 @@
-package com.alp.mvp.login.ui;
+package com.alp.mvp.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +6,10 @@ import android.os.Bundle;
 import com.alp.library.base.ui.BaseActivity;
 import com.alp.mvp.R;
 import com.alp.mvp.main.ui.MainActivity;
-import com.alp.mvp.register.RegisterActivity;
 
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +19,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public int getContentViewId() {
-        return R.layout.activity_login;
-    }
-
-    @OnClick(R.id.to_tegister_wrapper)
-    public void onRegisterClick() {
-        startActivity(new Intent(this, RegisterActivity.class));
-        finish();
+        return R.layout.activity_register;
     }
 
     @OnClick(R.id.button_login)

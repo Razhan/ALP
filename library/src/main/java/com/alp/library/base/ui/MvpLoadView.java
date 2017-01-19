@@ -8,13 +8,10 @@ public interface MVPLoadView<T> extends MVPView {
     public void showLoading(boolean pullToRefresh);
 
     @UiThread
-    public void showContent();
+    public void showContent(T data);
 
     @UiThread
     public void showError(String errorMessage, boolean pullToRefresh);
-
-    @UiThread
-    public void setData(T data);
 
     @UiThread
     public void loadData(boolean pullToRefresh);

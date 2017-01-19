@@ -1,7 +1,6 @@
 package com.alp.mvp.teams;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.alp.library.presenter.BasePresenter;
 import com.alp.library.usecase.UseCase;
@@ -22,8 +21,9 @@ public final class TeamsPresenter extends BasePresenter<TeamsContract.View> impl
 
     @Override
     public void getTeams() {
-        Log.d("getGames", "getGames");
-        getView().showTeams();
+        getView().showLoading(false);
+
+        getView().showContent("");
     }
 
     @Override
