@@ -8,4 +8,9 @@
     <item name="exception_message" type="string" />
 
     <item name="colorPrimary" type="color" />
+
+    <item name="contentView" type="id" />
+    <item name="errorView" type="id" />
+    <item name="loadingView" type="id" />
+
 </resources>
